@@ -1,42 +1,62 @@
 #!/bin/bash
 
-URL='https://dl.google.com/chrome/mac/stable/gcem/GoogleChrome.pkg';
+#URL='https://dl.google.com/chrome/mac/stable/gcem/GoogleChrome.pkg';
+URL='https://zoom.us/client/latest/Zoom.pkg';
 FOLDER='/tmp/teste';
 FILENAME="$(basename $URL)";
 
-DELETEFOLDER=0;
+DELETEFOLDER=1;
 DELETEFILE=0;
 
-ISAVAILABLE=$(curl -I --write-out %{http_code} --silent --output /dev/null "$URL");
+STATUS=$(curl -I --write-out %{http_code} --silent --output /dev/null "$URL");
 
-#status validation here
-
-CONTENTLENGTH=$(curl -sI "$URL" | grep content-length);
-
-#content length validation here
-
-FILELENGTH=${CONTENTLENGTH//[!0-9]/};
-
-if [ ! -d "$FOLDER" ];then
-    mkdir -p "$FOLDER";
+if [ $STATUS == '200' ] || [ $STATUS == '301' ] || [ $STATUS == '302' ];then
+    ISAVAILABLE=1;
+else
+    ISAVAILABLE=0;
 fi
 
-curl $URL -s -o "$FOLDER/$FILENAME";
+if [ $ISAVAILABLE == 0 ];then
+    echo "download indisponivel ...";
+else
+    echo "download disponivel ...";
 
-if [ -e "$FOLDER/$FILENAME" ];then
+    CONTENTLENGTH=$(curl -sI "$URL" | grep content-length);
+    FILELENGTH=${CONTENTLENGTH//[!0-9]/};
 
-    DOWNLOADLENGTH=$(wc -c "$FOLDER/$FILENAME" | awk '{print $1}');
+    if [ ! -d "$FOLDER" ];then
+        mkdir -p "$FOLDER";
+    fi
 
-    if [ $DOWNLOADLENGTH == $FILELENGTH ];then
-        #echo 'to aqui deu certo';
-    fi    
+    curl $URL -s -L -o "$FOLDER/$FILENAME";
+
+    if [ -e "$FOLDER/$FILENAME" ];then
+
+        echo "deu bom no download";
+
+        DOWNLOADLENGTH=$(wc -c "$FOLDER/$FILENAME" | awk '{print $1}');
+
+        if [ ! -z "$FILELENGTH" ];then
+            echo "deu bom";
+
+            if [ "$DOWNLOADLENGTH" == "$FILELENGTH" ];then
+                echo 'to aqui deu certo';
+            fi    
+        else
+            echo "deu ruim";
+        fi
+        
+    fi
+
 fi
 
 if [ $DELETEFILE == 1 ];then
+    echo "deletando arquivo ...";
     rm "$FOLDER/$FILENAME";
 fi
 
 if [ $DELETEFOLDER == 1 ];then
+    echo "deletando pasta ...";
     rm -rf "$FOLDER";
 fi
 
