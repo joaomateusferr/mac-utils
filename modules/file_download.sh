@@ -1,12 +1,11 @@
 #!/bin/bash
 
-#URL='https://dl.google.com/chrome/mac/stable/gcem/GoogleChrome.pkg';
-URL='https://zoom.us/client/latest/Zoom.pkg';
-FOLDER='/tmp/teste';
-FILENAME="$(basename $URL)";
-
 DELETEFOLDER=1;
 DELETEFILE=0;
+
+URL='';
+FOLDER='/tmp/teste';
+FILENAME="$(basename $URL)";
 
 STATUS=$(curl -I --write-out %{http_code} --silent --output /dev/null "$URL");
 
@@ -17,9 +16,9 @@ else
 fi
 
 if [ $ISAVAILABLE == 0 ];then
-    echo "download indisponivel ...";
+    echo "Download not available!";
 else
-    echo "download disponivel ...";
+    echo "Download available ...";
 
     CONTENTLENGTH=$(curl -sI "$URL" | grep content-length);
     FILELENGTH=${CONTENTLENGTH//[!0-9]/};
@@ -28,22 +27,34 @@ else
         mkdir -p "$FOLDER";
     fi
 
+    echo "Starting download ...";
+
     curl $URL -s -L -o "$FOLDER/$FILENAME";
+    DOWNLOADSTATUS=$?;
+
+    if [ $DOWNLOADSTATUS -eq 0 ];then
+        echo "Download completed ...";
+    else
+        echo "Eerror while downloading!";
+        exit;
+    fi
 
     if [ -e "$FOLDER/$FILENAME" ];then
 
-        echo "deu bom no download";
+        echo "Validating download!";
 
         DOWNLOADLENGTH=$(wc -c "$FOLDER/$FILENAME" | awk '{print $1}');
 
         if [ ! -z "$FILELENGTH" ];then
-            echo "deu bom";
+            echo "Information about the file size is available ...";
 
             if [ "$DOWNLOADLENGTH" == "$FILELENGTH" ];then
-                echo 'to aqui deu certo';
+                echo 'Validated file -> OK';
+            else
+                echo 'It looks like something is wrong with the file';
             fi    
         else
-            echo "deu ruim";
+            echo "Information about the file size is not available to validate the file!";
         fi
         
     fi
@@ -59,4 +70,3 @@ if [ $DELETEFOLDER == 1 ];then
     echo "deletando pasta ...";
     rm -rf "$FOLDER";
 fi
-
