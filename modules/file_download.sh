@@ -61,12 +61,14 @@ else
 
 fi
 
+#if you need to do something with the downloaded file here is the place
+
 if [ $DELETEFILE == 1 ];then
-    echo "deletando arquivo ...";
+    echo "Deleting file ...";
     rm "$FOLDER/$FILENAME";
 fi
 
 if [ $DELETEFOLDER == 1 ];then
-    echo "deletando pasta ...";
+    echo "Deleting folder ...";
     rm -rf "$FOLDER";
 fi
