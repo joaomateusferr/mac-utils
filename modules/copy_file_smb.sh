@@ -2,7 +2,7 @@
 
 #Settings
 DELETEFOLDER=0
-DELETEFILE=1
+DELETEFILE=0
 
 #User Info
 USER=''
