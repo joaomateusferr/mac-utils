@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Settings
 DELETEFOLDER=1;
 DELETEFILE=0;
 
