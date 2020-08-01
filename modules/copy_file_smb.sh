@@ -5,8 +5,8 @@ DELETEFOLDER=0
 DELETEFILE=0
 
 #User Info
-USER=''
-PASSWORD=''
+USER='user'
+PASSWORD='password'
 #to use the guest use USER = 'quest' and  PASSWORD ''
 
 if [ -z "$USER" ];then
@@ -14,7 +14,7 @@ if [ -z "$USER" ];then
 fi
 
 #ip or hostname
-SERVER='192.168.0.82'
+SERVER='192.168.0.2'
 
 SMBINFO="$USER:$PASSWORD@$SERVER/PUBLIC" 
 FILETOCOPY='test.txt'
