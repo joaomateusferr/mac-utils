@@ -28,8 +28,8 @@ if [ ! -d "/Volumes/SMB" ];then
     mkdir -p mkdir /Volumes/SMB
 fi
 
-#mount -t smbfs //$SMBINFO /Volumes/SMB
-SMBSTATUS=0;
+mount -o timeout=60 -t smbfs //$SMBINFO /Volumes/SMB
+SMBSTATUS=$?;
 
 if [ $SMBSTATUS -eq 0 ];then
     echo "SHB mounted"
