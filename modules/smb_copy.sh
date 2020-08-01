@@ -2,7 +2,7 @@
 
 #Settings
 DELETEFOLDER=0
-DELETEFILE=0
+DELETEFILE=1
 
 #User Info
 USER=''
@@ -28,7 +28,7 @@ if [ ! -d "/Volumes/SMB" ];then
     mkdir -p mkdir /Volumes/SMB
 fi
 
-mount -t smbfs //$SMBINFO /Volumes/SMB
+#mount -t smbfs //$SMBINFO /Volumes/SMB
 SMBSTATUS=0;
 
 if [ $SMBSTATUS -eq 0 ];then
@@ -37,18 +37,17 @@ if [ $SMBSTATUS -eq 0 ];then
     
     if [ ! -e "/Volumes/SMB/$FILETOCOPY" ]; then
         echo "ERROR!!! /Volumes/SMB/$FILETOCOPY was not Found"
-        unmount /Volumes/SMB
+        #unmount /Volumes/SMB
     else
         cp /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
-        $CPSTATUS=$?
 
-        if [ $CPSTATUS -eq 0 ];then
+        if [ -e "$FILEDESTDMATION/$FILETOCOPY" ]; then
             echo "FILE DESTINATION - Copied"
         else
             echo "ERROR!!! file not copied"
         fi
 
-        unmount /Volumes/SMB
+        #unmount /Volumes/SMB
     fi
 else 
     echo "Error, SMB was not mounted"
@@ -58,7 +57,7 @@ fi
 
 if [ $DELETEFILE == 1 ];then
     echo "Deleting file ...";
-    rm "$FILEDESTDMATION/$FILECOPY";
+    rm "$FILEDESTDMATION/$FILETOCOPY";
 fi
 
 if [ $DELETEFOLDER == 1 ];then
