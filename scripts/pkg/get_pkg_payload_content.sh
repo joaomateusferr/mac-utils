@@ -13,6 +13,6 @@ fi
 
 pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
 
-cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'
+open $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME
 
 rm -rf "$FOLDER_TO_EXTRACT_TO"
