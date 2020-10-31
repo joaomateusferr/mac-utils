@@ -1,2 +1,2 @@
 # Mac Scripts
-A project that contains useful scripts for macOS using shell script
+A repository that contains useful scripts for macOS using shell script.
