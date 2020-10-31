@@ -1,2 +1,2 @@
-# File Management
-A project to facilitate the management and conversion of multiple files using shel scripts
+# Mac Scripts
+A repository that contains useful scripts for macOS using shell script.
