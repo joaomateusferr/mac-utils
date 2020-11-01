@@ -29,7 +29,7 @@ if [ ! -d "/Volumes/SMB" ];then
 fi
 
 mount -t smbfs //$SMBINFO /Volumes/SMB
-SMBSTATUS=$?;
+SMBSTATUS=$?
 
 if [ $SMBSTATUS -eq 0 ];then
     echo "SMB mounted"
