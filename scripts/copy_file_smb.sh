@@ -5,19 +5,19 @@ DELETEFOLDER=0
 DELETEFILE=0
 
 #User Info
-USER='user'
-PASSWORD='password'
+USER=''
+PASSWORD=''
 #to use the guest use USER = 'quest' and  PASSWORD ''
 
 if [ -z "$USER" ];then
-    USER='quest';
+    USER='guest';
 fi
 
 #ip or hostname
-SERVER='192.168.0.2'
+SERVER='192.168.0.172'
 
-SMBINFO="$USER:$PASSWORD@$SERVER/PUBLIC" 
-FILETOCOPY='test.txt'
+SMBINFO="$USER:$PASSWORD@$SERVER/Public" 
+FILETOCOPY='Untitled.mobileconfig'
 FILEDESTDMATION='/tmp/test'
 
 if [ ! -d "$FILEDESTDMATION" ];then
@@ -28,11 +28,11 @@ if [ ! -d "/Volumes/SMB" ];then
     mkdir -p mkdir /Volumes/SMB
 fi
 
-mount -o timeout=60 -t smbfs //$SMBINFO /Volumes/SMB
+mount -t smbfs //$SMBINFO /Volumes/SMB
 SMBSTATUS=$?;
 
 if [ $SMBSTATUS -eq 0 ];then
-    echo "SHB mounted"
+    echo "SMB mounted"
     sleep 5
     
     if [ ! -e "/Volumes/SMB/$FILETOCOPY" ]; then
