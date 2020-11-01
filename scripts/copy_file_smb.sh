@@ -7,7 +7,7 @@ DELETEFILE=0
 #User Info
 USER=''
 PASSWORD=''
-#to use the guest use USER = 'quest' and  PASSWORD ''
+#to use the guest use USER = 'guest' and  PASSWORD ''
 
 if [ -z "$USER" ];then
     USER='guest';
@@ -37,7 +37,7 @@ if [ $SMBSTATUS -eq 0 ];then
     
     if [ ! -e "/Volumes/SMB/$FILETOCOPY" ]; then
         echo "ERROR!!! /Volumes/SMB/$FILETOCOPY was not Found"
-        #unmount /Volumes/SMB
+        diskutil unmount /Volumes/SMB
     else
         cp /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
 
@@ -47,7 +47,7 @@ if [ $SMBSTATUS -eq 0 ];then
             echo "ERROR!!! file not copied"
         fi
 
-        #unmount /Volumes/SMB
+        diskutil unmount /Volumes/SMB
     fi
 else 
     echo "Error, SMB was not mounted"
