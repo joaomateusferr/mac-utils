@@ -18,6 +18,9 @@ fi
 
 pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
 
-cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'
+ APP_VERSION=$("defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist CFBundleShortVersionString")
+ echo $APP_VERSION
+
+#cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'
 
 rm -rf "$FOLDER_TO_EXTRACT_TO"
