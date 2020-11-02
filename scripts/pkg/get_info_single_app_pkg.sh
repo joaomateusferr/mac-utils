@@ -18,6 +18,10 @@ fi
 
 pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
 
+ls $FOLDER_TO_EXTRACT_TO | grep '\.pkg$' | wc -l
+
+exit
+
 APP_BUNDLE=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist CFBundleIdentifier)
 APP_VERSION=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist CFBundleShortVersionString)
 
