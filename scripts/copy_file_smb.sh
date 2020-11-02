@@ -57,7 +57,7 @@ else
             sleep 5
             
             if [ ! -e "/Volumes/SMB/$FILETOCOPY" ]; then
-                echo "ERROR!!! $SERVER$SMBFOLDERPATH/$FILETOCOPY was not Found"
+                echo "Error, $SERVER$SMBFOLDERPATH/$FILETOCOPY was not Found"
 
                 diskutil unmount /Volumes/SMB > /dev/null 2>&1
                 MOUNTSTATUS=$?
@@ -85,7 +85,7 @@ else
                         echo 'It looks like something is wrong with the file'
                     fi    
                 else
-                    echo 'ERROR!!! file not found'
+                    echo 'Error, file not found'
                 fi
 
                 diskutil unmount /Volumes/SMB > /dev/null 2>&1
