@@ -64,7 +64,7 @@ fi
 
 #If the folder is deleted the files in it will also be deleted
 if [ $DELETEFOLDER == 1 ];then
-    $DELETEFILE=0
+    DELETEFILE=0
 fi
 
 if [ $DELETEFILE == 1 ];then
