@@ -18,13 +18,15 @@ FILETOCOPY='file.txt'
 FILEDESTDMATION='/tmp/test'
 
 #ip or hostname
-SERVER='192.168.0.173'
+SERVER='192.168.0.172'
 
 if [ $EUID -ne 0 ]; then
     echo 'No root privileges detected!'
     echo 'Please, run this script as root'
 
 else
+    echo 'Searching ...'
+
     ping -i 1 -c 3 "$SERVER" > /dev/null 2>&1
     SERVERSTATUS=$?
 
@@ -51,19 +53,19 @@ else
         SMBSTATUS=$?
 
         if [ $SMBSTATUS -eq 0 ];then
-            echo "SMB mounted"
+            echo 'SMB mounted'
             sleep 5
             
             if [ ! -e "/Volumes/SMB/$FILETOCOPY" ]; then
-                echo "ERROR!!! /Volumes/SMB/$FILETOCOPY was not Found"
+                echo "ERROR!!! $SERVER$SMBFOLDERPATH/$FILETOCOPY was not Found"
 
                 diskutil unmount /Volumes/SMB > /dev/null 2>&1
                 MOUNTSTATUS=$?
                 
                 if [ $MOUNTSTATUS -eq 0 ];then
-                    echo "SMB unmounted"
+                    echo 'SMB unmounted'
                 else
-                    echo "Error, SMB was not unmounted"
+                    echo 'Error, SMB was not unmounted'
                 fi
 
             else
@@ -72,31 +74,31 @@ else
                 if [ -e "$FILEDESTDMATION/$FILETOCOPY" ]; then
                     echo "$FILETOCOPY - Copied"
                 else
-                    echo "ERROR!!! file not copied"
+                    echo 'ERROR!!! file not copied'
                 fi
 
                 diskutil unmount /Volumes/SMB > /dev/null 2>&1
                 MOUNTSTATUS=$?
                 
                 if [ $MOUNTSTATUS -eq 0 ];then
-                    echo "SMB unmounted"
+                    echo 'SMB unmounted'
                 else
-                    echo "Error, SMB was not unmounted"
+                    echo 'Error, SMB was not unmounted'
                 fi
             fi
         else 
-            echo "Error, SMB was not mounted"
+            echo 'Error, SMB was not mounted'
         fi
 
         #if you need to do something with the downloaded file here is the place
 
-        if [ $DELETEFILE == 1 ];then
-            echo "Deleting file ...";
+        if [ $DELETEFILE -eq 1 ];then
+            echo 'Deleting file ...'
             rm "$FILEDESTDMATION/$FILETOCOPY"
         fi
 
-        if [ $DELETEFOLDER == 1 ];then
-            echo "Deleting folder ..."
+        if [ $DELETEFOLDER -eq 1 ];then
+            echo 'Deleting folder ...'
             rm -rf "$FILEDESTDMATION"
         fi    
     fi
