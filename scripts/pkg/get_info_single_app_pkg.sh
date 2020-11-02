@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-PATH_TO_PKG='/tmp/Zoom.pkg'
-FOLDER_TO_EXTRACT_TO='/tmp/extracted_pkg'
+PATH_TO_PKG='/Users/joaoferreira/Downloads/Zoom.pkg'
+FILEDESTDMATION='/private/tmp'
+FOLDER_TO_EXTRACT_TO='/private/tmp/extracted_pkg'
+
+PATH_TO_PKG='/private/tmp/Zoom.pkg'
+
+#cp "$PATH_TO_PKG" "$FILEDESTDMATION"
 
 #APP VARIABLES
 
