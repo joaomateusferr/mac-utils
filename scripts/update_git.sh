@@ -9,8 +9,6 @@ if [ $? -ne 0 ] ; then
     echo 'Homebrew not installed, installing ...'
     
     echo -ne "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" > /dev/null 2>&1 # Install Homebrew
-    
-    #unistall #echo -ne 'y' |/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
 
     if [ $? -eq 0 ] ; then
         echo 'Homebrew installed'
@@ -31,6 +29,8 @@ else
     fi
     
 fi
+
+#if necessary, unistall command #echo -ne 'y' |/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
 
 #Git
 
