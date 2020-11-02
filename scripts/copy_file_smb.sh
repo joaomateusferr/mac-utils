@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Developer notes
+#for this script to work correctly it must be run as root
+#to use the guest use USER = '' and  PASSWORD ''
+
 #Settings
 DELETEFOLDER=0
 DELETEFILE=0
@@ -7,60 +11,94 @@ DELETEFILE=0
 #User Info
 USER=''
 PASSWORD=''
-#to use the guest use USER = 'guest' and  PASSWORD ''
 
-if [ -z "$USER" ];then
-    USER='guest';
-fi
-
-#ip or hostname
-SERVER='192.168.0.172'
-
-SMBINFO="$USER:$PASSWORD@$SERVER/Public" 
-FILETOCOPY='Untitled.mobileconfig'
+#Folder/File Info 
+SMBFOLDERPATH='/Public'
+FILETOCOPY='file.txt'
 FILEDESTDMATION='/tmp/test'
 
-if [ ! -d "$FILEDESTDMATION" ];then
-    mkdir -p "$FILEDESTDMATION"
-fi
+#ip or hostname
+SERVER='192.168.0.173'
 
-if [ ! -d "/Volumes/SMB" ];then
-    mkdir -p mkdir /Volumes/SMB
-fi
+if [ $EUID -ne 0 ]; then
+    echo 'No root privileges detected!'
+    echo 'Please, run this script as root'
 
-mount -t smbfs //$SMBINFO /Volumes/SMB
-SMBSTATUS=$?;
+else
+    ping -i 1 -c 3 "$SERVER" > /dev/null 2>&1
+    SERVERSTATUS=$?
 
-if [ $SMBSTATUS -eq 0 ];then
-    echo "SMB mounted"
-    sleep 5
-    
-    if [ ! -e "/Volumes/SMB/$FILETOCOPY" ]; then
-        echo "ERROR!!! /Volumes/SMB/$FILETOCOPY was not Found"
-        diskutil unmount /Volumes/SMB
-    else
-        cp /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
+    if [ $SERVERSTATUS -ne 0 ] ; then
+        echo 'SMB not found please, check the server information!'
+    else 
+       echo 'SMB found'
 
-        if [ -e "$FILEDESTDMATION/$FILETOCOPY" ]; then
-            echo "FILE DESTINATION - Copied"
-        else
-            echo "ERROR!!! file not copied"
+       if [ -z "$USER" ];then
+            USER='guest';
         fi
 
-        diskutil unmount /Volumes/SMB
+        SMBINFO="$USER:$PASSWORD@$SERVER$SMBFOLDERPATH" 
+
+        if [ ! -d "$FILEDESTDMATION" ];then
+            mkdir -p "$FILEDESTDMATION"
+        fi
+
+        if [ ! -d "/Volumes/SMB" ];then
+            mkdir -p mkdir /Volumes/SMB
+        fi
+
+        mount -t smbfs //$SMBINFO /Volumes/SMB
+        SMBSTATUS=$?
+
+        if [ $SMBSTATUS -eq 0 ];then
+            echo "SMB mounted"
+            sleep 5
+            
+            if [ ! -e "/Volumes/SMB/$FILETOCOPY" ]; then
+                echo "ERROR!!! /Volumes/SMB/$FILETOCOPY was not Found"
+
+                diskutil unmount /Volumes/SMB > /dev/null 2>&1
+                MOUNTSTATUS=$?
+                
+                if [ $MOUNTSTATUS -eq 0 ];then
+                    echo "SMB unmounted"
+                else
+                    echo "Error, SMB was not unmounted"
+                fi
+
+            else
+                cp /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
+
+                if [ -e "$FILEDESTDMATION/$FILETOCOPY" ]; then
+                    echo "$FILETOCOPY - Copied"
+                else
+                    echo "ERROR!!! file not copied"
+                fi
+
+                diskutil unmount /Volumes/SMB > /dev/null 2>&1
+                MOUNTSTATUS=$?
+                
+                if [ $MOUNTSTATUS -eq 0 ];then
+                    echo "SMB unmounted"
+                else
+                    echo "Error, SMB was not unmounted"
+                fi
+            fi
+        else 
+            echo "Error, SMB was not mounted"
+        fi
+
+        #if you need to do something with the downloaded file here is the place
+
+        if [ $DELETEFILE == 1 ];then
+            echo "Deleting file ...";
+            rm "$FILEDESTDMATION/$FILETOCOPY";
+        fi
+
+        if [ $DELETEFOLDER == 1 ];then
+            echo "Deleting folder ...";
+            rm -rf "$FILEDESTDMATION";
+        fi    
     fi
-else 
-    echo "Error, SMB was not mounted"
-fi
 
-#if you need to do something with the downloaded file here is the place
-
-if [ $DELETEFILE == 1 ];then
-    echo "Deleting file ...";
-    rm "$FILEDESTDMATION/$FILETOCOPY";
-fi
-
-if [ $DELETEFOLDER == 1 ];then
-    echo "Deleting folder ...";
-    rm -rf "$FILEDESTDMATION";
 fi
