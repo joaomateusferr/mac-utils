@@ -69,15 +69,15 @@ else
                 fi
 
             else
-                SERVERFILELENGTH=$(wc -c "/Volumes/SMB/$FILETOCOPY" | awk '{print $1}')
-                FILELENGTH=$(wc -c "$FILEDESTDMATION/$FILETOCOPY" | awk '{print $1}')
-
                 cp /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
 
                 if [ -e "$FILEDESTDMATION/$FILETOCOPY" ]; then
                     echo "$FILETOCOPY - Copied"
 
                     echo 'validating file...'
+
+                    SERVERFILELENGTH=$(wc -c "/Volumes/SMB/$FILETOCOPY" | awk '{print $1}')
+                    FILELENGTH=$(wc -c "$FILEDESTDMATION/$FILETOCOPY" | awk '{print $1}')
 
                     if [ "$SERVERFILELENGTH" == "$FILELENGTH" ];then
                         echo 'Validated file -> OK'
