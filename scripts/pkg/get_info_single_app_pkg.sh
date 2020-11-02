@@ -2,14 +2,12 @@
 
 #Developer notes
 #Currently this script only get data from pkgs that contains a single .app file if there is more than one the first in alphabetical order will be taken into account
+#The command "pkgutil --expand-full" uses macos environment variables to work so please run this script in Terminal app
+#Use the "pwd" command to get the pkg path because it must contain the entire path
 
 PATH_TO_PKG='/Users/joaoferreira/Downloads/Zoom.pkg'
 FILEDESTDMATION='/private/tmp'
 FOLDER_TO_EXTRACT_TO='/private/tmp/extracted_pkg'
-
-PATH_TO_PKG='/private/tmp/Zoom.pkg'
-
-#cp "$PATH_TO_PKG" "$FILEDESTDMATION" #need to test it in /tmp
 
 if [ -e "$FOLDER_TO_EXTRACT_TO" ];then
     rm -rf "$FOLDER_TO_EXTRACT_TO"
