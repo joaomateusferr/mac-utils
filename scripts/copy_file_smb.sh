@@ -46,10 +46,10 @@ else
         fi
 
         if [ ! -d "/Volumes/SMB" ];then
-            mkdir -p mkdir /Volumes/SMB
+            mkdir -p mkdir /Volumes/SMB > /dev/null 2>&1
         fi
 
-        mount -t smbfs //$SMBINFO /Volumes/SMB
+        mount -t smbfs //$SMBINFO /Volumes/SMB > /dev/null 2>&1
         SMBSTATUS=$?
 
         if [ $SMBSTATUS -eq 0 ];then
@@ -92,14 +92,33 @@ else
 
         #if you need to do something with the downloaded file here is the place
 
+        #if the folder is deleted the files in it will also be deleted
+        if [ $DELETEFOLDER -eq 1 ];then
+            $DELETEFILE=0
+        fi
+
         if [ $DELETEFILE -eq 1 ];then
             echo 'Deleting file ...'
-            rm "$FILEDESTDMATION/$FILETOCOPY"
+            rm "$FILEDESTDMATION/$FILETOCOPY" > /dev/null 2>&1
+
+            if [ $? -eq 0 ];then
+                echo 'File deleted'
+            else
+                echo 'Error, file deleted'
+            fi
+
         fi
 
         if [ $DELETEFOLDER -eq 1 ];then
             echo 'Deleting folder ...'
-            rm -rf "$FILEDESTDMATION"
+            rm -rf "$FILEDESTDMATION" > /dev/null 2>&1
+
+            if [ $? -eq 0 ];then
+                echo 'Folder deleted'
+            else
+                echo 'Error, folder deleted'
+            fi
+
         fi    
     fi
 
