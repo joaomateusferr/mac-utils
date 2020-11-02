@@ -92,12 +92,12 @@ else
 
         if [ $DELETEFILE == 1 ];then
             echo "Deleting file ...";
-            rm "$FILEDESTDMATION/$FILETOCOPY";
+            rm "$FILEDESTDMATION/$FILETOCOPY"
         fi
 
         if [ $DELETEFOLDER == 1 ];then
-            echo "Deleting folder ...";
-            rm -rf "$FILEDESTDMATION";
+            echo "Deleting folder ..."
+            rm -rf "$FILEDESTDMATION"
         fi    
     fi
 
