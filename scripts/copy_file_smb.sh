@@ -90,9 +90,9 @@ else
             echo 'Error, SMB was not mounted'
         fi
 
-        #if you need to do something with the downloaded file here is the place
+        #In case you need to do something with the downloaded file here is the place
 
-        #if the folder is deleted the files in it will also be deleted
+        #If the folder is deleted the files in it will also be deleted
         if [ $DELETEFOLDER -eq 1 ];then
             $DELETEFILE=0
         fi
