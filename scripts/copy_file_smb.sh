@@ -69,12 +69,23 @@ else
                 fi
 
             else
+                SERVERFILELENGTH=$(wc -c "/Volumes/SMB/$FILETOCOPY" | awk '{print $1}')
+                FILELENGTH=$(wc -c "$FILEDESTDMATION/$FILETOCOPY" | awk '{print $1}')
+
                 cp /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
 
                 if [ -e "$FILEDESTDMATION/$FILETOCOPY" ]; then
                     echo "$FILETOCOPY - Copied"
+
+                    echo 'validating file...'
+
+                    if [ "$SERVERFILELENGTH" == "$FILELENGTH" ];then
+                        echo 'Validated file -> OK'
+                    else
+                        echo 'It looks like something is wrong with the file'
+                    fi    
                 else
-                    echo 'ERROR!!! file not copied'
+                    echo 'ERROR!!! file not found'
                 fi
 
                 diskutil unmount /Volumes/SMB > /dev/null 2>&1

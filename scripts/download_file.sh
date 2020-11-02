@@ -30,7 +30,7 @@ else
 
     echo 'Starting download ...'
 
-    curl $URL -s -L -o "$FOLDER/$FILENAME";
+    curl $URL -s -L -o "$FOLDER/$FILENAME" > /dev/null 2>&1
     DOWNLOADSTATUS=$?;
 
     if [ $DOWNLOADSTATUS -eq 0 ];then
