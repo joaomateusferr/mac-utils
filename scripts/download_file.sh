@@ -1,75 +1,90 @@
 #!/bin/bash
 
 #Settings
-DELETEFOLDER=1;
-DELETEFILE=0;
+DELETEFOLDER=0
+DELETEFILE=0
 
-URL='';
-FOLDER='/tmp/teste';
-FILENAME="$(basename $URL)";
+URL=''
+FOLDER='/tmp/test'
+FILENAME="$(basename $URL)"
 
-STATUS=$(curl -I --write-out %{http_code} --silent --output /dev/null "$URL");
+STATUS=$(curl -I --write-out %{http_code} --silent --output /dev/null "$URL")
 
 if [ $STATUS == '200' ] || [ $STATUS == '301' ] || [ $STATUS == '302' ];then
-    ISAVAILABLE=1;
+    ISAVAILABLE=1
 else
-    ISAVAILABLE=0;
+    ISAVAILABLE=0
 fi
 
 if [ $ISAVAILABLE == 0 ];then
-    echo "Download not available!";
+    echo 'Download not available!'
 else
-    echo "Download available ...";
+    echo 'Download available ...'
 
-    CONTENTLENGTH=$(curl -sI "$URL" | grep content-length);
+    CONTENTLENGTH=$(curl -sI "$URL" | grep content-length)
     FILELENGTH=${CONTENTLENGTH//[!0-9]/};
 
     if [ ! -d "$FOLDER" ];then
         mkdir -p "$FOLDER";
     fi
 
-    echo "Starting download ...";
+    echo 'Starting download ...'
 
     curl $URL -s -L -o "$FOLDER/$FILENAME";
     DOWNLOADSTATUS=$?;
 
     if [ $DOWNLOADSTATUS -eq 0 ];then
-        echo "Download completed ...";
-    else
-        echo "Eerror while downloading!";
-        exit;
-    fi
+        echo 'Download completed ...'
 
-    if [ -e "$FOLDER/$FILENAME" ];then
+        if [ -e "$FOLDER/$FILENAME" ];then
 
-        echo "Validating download!";
+            echo 'Validating download!'
 
-        DOWNLOADLENGTH=$(wc -c "$FOLDER/$FILENAME" | awk '{print $1}');
+            DOWNLOADLENGTH=$(wc -c "$FOLDER/$FILENAME" | awk '{print $1}')
 
-        if [ ! -z "$FILELENGTH" ];then
-            echo "Information about the file size is available ...";
+            if [ ! -z "$FILELENGTH" ];then
+                echo 'Information about the file size is available ...'
 
-            if [ "$DOWNLOADLENGTH" == "$FILELENGTH" ];then
-                echo 'Validated file -> OK';
+                if [ "$DOWNLOADLENGTH" == "$FILELENGTH" ];then
+                    echo 'Validated file -> OK'
+                else
+                    echo 'It looks like something is wrong with the file'
+                fi    
             else
-                echo 'It looks like something is wrong with the file';
-            fi    
-        else
-            echo "Information about the file size is not available to validate the file!";
+                echo 'Information about the file size is not available to validate the file!'
+            fi
         fi
-        
+    else
+        echo 'Error while downloading!'
     fi
 
 fi
 
 #if you need to do something with the downloaded file here is the place
 
-if [ $DELETEFILE == 1 ];then
-    echo "Deleting file ...";
-    rm "$FOLDER/$FILENAME";
+#If the folder is deleted the files in it will also be deleted
+if [ $DELETEFOLDER -eq 1 ];then
+    $DELETEFILE=0
 fi
 
-if [ $DELETEFOLDER == 1 ];then
-    echo "Deleting folder ...";
-    rm -rf "$FOLDER";
+if [ $DELETEFILE -eq 1 ];then
+    echo 'Deleting file ...'
+    rm "$FILEDESTDMATION/$FILETOCOPY" > /dev/null 2>&1
+
+    if [ $? -eq 0 ];then
+        echo 'File deleted'
+    else
+        echo 'Error, file not deleted'
+    fi
+
 fi
+
+if [ $DELETEFOLDER -eq 1 ];then
+    echo 'Deleting folder ...'
+    rm -rf "$FILEDESTDMATION" > /dev/null 2>&1
+
+    if [ $? -eq 0 ];then
+        echo 'Folder deleted'
+    else
+        echo 'Error, folder not deleted'
+    fi
