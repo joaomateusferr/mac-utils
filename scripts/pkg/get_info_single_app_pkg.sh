@@ -18,11 +18,12 @@ fi
 
 pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
 
-CFBundleExecutable
-CFBundleIdentifier
+APP_BUNDLE=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist CFBundleIdentifier)
 APP_VERSION=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist CFBundleShortVersionString)
-echo $APP_VERSION
 
-#cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'
+echo 'App Info: '
+echo "Name: $APP_NAME"
+echo "Bundle: $APP_BUNDLE"
+echo "Version: $APP_VERSION" 
 
 rm -rf "$FOLDER_TO_EXTRACT_TO"
