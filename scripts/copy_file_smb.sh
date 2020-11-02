@@ -36,7 +36,7 @@ else
        echo 'SMB found'
 
        if [ -z "$USER" ];then
-            USER='guest';
+            USER='guest'
         fi
 
         SMBINFO="$USER:$PASSWORD@$SERVER$SMBFOLDERPATH" 
