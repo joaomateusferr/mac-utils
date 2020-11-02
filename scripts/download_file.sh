@@ -76,7 +76,6 @@ if [ $DELETEFILE -eq 1 ];then
     else
         echo 'Error, file not deleted'
     fi
-
 fi
 
 if [ $DELETEFOLDER -eq 1 ];then
@@ -88,3 +87,4 @@ if [ $DELETEFOLDER -eq 1 ];then
     else
         echo 'Error, folder not deleted'
     fi
+fi
