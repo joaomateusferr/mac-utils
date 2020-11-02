@@ -6,7 +6,7 @@
 #Use the "pwd" command to get the pkg path because it must contain the entire path
 
 PATH_TO_PKG='/Users/joaoferreira/Downloads/Zoom.pkg'
-FILEDESTDMATION='/private/tmp'
+
 FOLDER_TO_EXTRACT_TO='/private/tmp/extracted_pkg'
 
 if [ -e "$FOLDER_TO_EXTRACT_TO" ];then
