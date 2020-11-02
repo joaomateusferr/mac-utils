@@ -46,7 +46,7 @@ else
         fi
 
         if [ ! -d "/Volumes/SMB" ];then
-            mkdir -p mkdir /Volumes/SMB > /dev/null 2>&1
+            mkdir -p /Volumes/SMB > /dev/null 2>&1
         fi
 
         mount -t smbfs //$SMBINFO /Volumes/SMB > /dev/null 2>&1
@@ -105,7 +105,7 @@ else
 
         #If the folder is deleted the files in it will also be deleted
         if [ $DELETEFOLDER -eq 1 ];then
-            $DELETEFILE=0
+            DELETEFILE=0
         fi
 
         if [ $DELETEFILE -eq 1 ];then
