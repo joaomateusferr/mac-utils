@@ -5,7 +5,7 @@
 #The command "pkgutil --expand-full" uses macos environment variables to work so please run this script in Terminal app
 #Use the "pwd" command to get the pkg path because it must contain the entire path
 
-PATH_TO_PKG='/Users/joaoferreira/Downloads/Zoom.pkg'
+PATH_TO_PKG='/Users/joaoferreira/Downloads/GoogleChrome.pkg'
 
 FOLDER_TO_EXTRACT_TO='/private/tmp/extracted_pkg'
 
@@ -15,6 +15,8 @@ fi
 
 pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
 
+#remember to fix PKG_NAME and APP_NAME whit spaces
+
 PKG_NAME=$(ls "$FOLDER_TO_EXTRACT_TO" | grep '\.pkg$' | head -1)
 
 if [ -z "$PKG_NAME" ];then
@@ -23,14 +25,20 @@ if [ -z "$PKG_NAME" ];then
 fi
 
 APP_NAME=$(ls "$FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload" | grep '\.app$' | head -1)
+APP_NAME_PATH=${APP_NAME// /\\ }
+
+echo $APP_NAME_PATH
 
 if [ -z "$PKG_NAME" ];then
     echo 'Unable to find a .app inside the pkg payload'
     exit
 fi
 
-APP_BUNDLE=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist CFBundleIdentifier)
-APP_VERSION=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME/Contents/Info.plist CFBundleShortVersionString)
+eval "cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'"
+exit
+
+APP_BUNDLE=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist CFBundleIdentifier)
+APP_VERSION=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist CFBundleShortVersionString)
 
 echo 'App Info: '
 echo "Name: $APP_NAME"
