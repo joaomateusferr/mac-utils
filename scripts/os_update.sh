@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ERASE_VOLUME=$1
+ERASE_VOLUME=1
 
 if [ -z $ERASE_VOLUME ];then
     echo 'Please, use the scripts argument:'
@@ -8,11 +8,7 @@ if [ -z $ERASE_VOLUME ];then
     exit 1
 fi
 
-#https://osxdaily.com/2020/04/13/how-download-full-macos-installer-terminal/
-softwareupdate --download --fetch-full-installer --full-installer-version 10.13.6
-defaults delete com.apple.softwareupdate
-sudo shutdown -r now 
-exit
+#softwareupdate --download --fetch-full-installer --full-installer-version 10.15.1
 
 APP_NAME='Install macOS Catalina.app'
 APP_NAME_PATH=${APP_NAME// /\\ }
