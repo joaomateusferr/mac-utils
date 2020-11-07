@@ -9,7 +9,9 @@ if [ -z $ERASE_VOLUME ];then
 fi
 
 #https://osxdaily.com/2020/04/13/how-download-full-macos-installer-terminal/
-softwareupdate --download --fetch-full-installer --full-installer-version 10.13.6 
+softwareupdate --download --fetch-full-installer --full-installer-version 10.13.6
+defaults delete com.apple.softwareupdate
+sudo shutdown -r now 
 exit
 
 APP_NAME='Install macOS Catalina.app'
