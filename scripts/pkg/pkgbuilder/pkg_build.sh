@@ -19,6 +19,7 @@ DEVELOPER_ID_INSTALLER=$5
 if [ -z $BUNDLEID ] || [ -z $VERSION ];then
     echo "Please, use the use at least this scripts arguments:"
     echo "BUNDLEID (com.app...) VERSION (pkg version)"
+    exit
 else
     # Get the absolute path of the directory containing this script
     DIR=$(unset CDPATH && cd "$(dirname "$0")" && echo $PWD)
@@ -75,8 +76,8 @@ else
 
     COMMAND="pkgbuild --identifier $BUNDLEID"
 
-    if [ -z $DEVELOPER_ID_INSTALLER ];then
-        COMMAND+="--sign Developer ID Installer: $DEVELOPER_ID_INSTALLER"
+    if [ ! -z $DEVELOPER_ID_INSTALLER ];then
+        COMMAND+=" --sign Developer ID Installer: $DEVELOPER_ID_INSTALLER"
     fi
 
     if [ ! -s ./payload/*.app ];then
@@ -84,7 +85,7 @@ else
         COMMAND+=" --nopayload"
     else
 
-        if [$BUNDLE_IS_RELOCATABLE -eq 0];then
+        if [ ! -z $BUNDLE_IS_RELOCATABLE ] && [ $BUNDLE_IS_RELOCATABLE -eq 0 ];then
             pkgbuild --analyze --root "$DIR/payload/" "$DIR/Info.plist"
             plutil -replace BundleIsRelocatable -bool NO "$DIR/Info.plist"
             COMMAND+=" --component-plist $DIR/Info.plist"
@@ -92,22 +93,24 @@ else
 
         COMMAND+=" --root $DIR/payload/ --install-location $LOCATION"
 
-        if [ -e "$DIR/scripts/postinstall" ] || [ -e "$DIR/scripts/postinstall" ];then
-            COMMAND+=" --scripts $DIR/scripts/"
-        fi
-                
-        COMMAND+=" --version $VERSION $DIR/$BUNDLEID-$BUILD.pkg"
+    fi
 
-        if [$BUNDLE_IS_RELOCATABLE -eq 0];then
-            rm "$DIR/Info.plist"
-        fi
+    if [ -e "$DIR/scripts/postinstall" ] || [ -e "$DIR/scripts/postinstall" ];then
+        COMMAND+=" --scripts $DIR/scripts/"
+    fi
                 
+    COMMAND+=" --version $VERSION $DIR/$BUNDLEID-$BUILD.pkg"
+
+    if [ ! -z $BUNDLE_IS_RELOCATABLE ] && [ $BUNDLE_IS_RELOCATABLE -eq 0 ];then
+        rm "$DIR/Info.plist"
     fi
 
 fi
 
 echo $COMMAND
 exit
+
+#need to test it
 
 eval $COMMAND
 
