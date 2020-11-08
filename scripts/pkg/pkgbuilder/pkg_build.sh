@@ -40,13 +40,13 @@ else
 
     #clear the .files  from the folders
     /usr/bin/find "$DIR" -name .DS_Store -delete
-    /usr/bin/find "$DIR/payload" -name .DS_Store -delete
-    /usr/bin/find "$DIR/payload" -name .keep -delete
+    /usr/bin/find "$DIR/payload/" -name .DS_Store -delete
+    /usr/bin/find "$DIR/payload/" -name .keep -delete
     /usr/bin/find "$DIR/scripts/" -name .DS_Store -delete
     /usr/bin/find "$DIR/scripts/" -name .keep -delete
 
     #Validations
-    if [ ! -s ./payload/*.app ];then
+    if [ ! "$(ls -A $DIR/payload/)" ];then
 
         if [ ! -e "$DIR/scripts/postinstall" ] || [ ! -e "$DIR/scripts/postinstall" ];then
 
@@ -80,8 +80,7 @@ else
         COMMAND+=" --sign Developer ID Installer: $DEVELOPER_ID_INSTALLER"
     fi
 
-    if [ ! -s ./payload/*.app ];then
-
+    if [ ! "$(ls -A $DIR/payload/)" ];then
         COMMAND+=" --nopayload"
     else
 
