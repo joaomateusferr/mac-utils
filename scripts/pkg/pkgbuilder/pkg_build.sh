@@ -10,11 +10,11 @@
 #To find out how to have your Developer ID Installer certificate and learn more about the Mac Gatekeeper check the link https://developer.apple.com/developer-id/
 #The DEVELOPER_ID_INSTALLER parameter must contain only the id following the pattern *******
 
-BUNDLEID=$1
-VERSION=$2
-LOCATION=$3
-BUNDLE_IS_RELOCATABLE=$4
-DEVELOPER_ID_INSTALLER=$5
+BUNDLEID=''
+VERSION='1'
+LOCATION='/Applications'
+BUNDLE_IS_RELOCATABLE='0'
+DEVELOPER_ID_INSTALLER=''
 
 if [ -z $BUNDLEID ] || [ -z $VERSION ];then
     echo "Please, use the use at least this scripts arguments:"
@@ -100,17 +100,9 @@ else
                 
     COMMAND+=" --version $VERSION $DIR/$BUNDLEID-$BUILD.pkg"
 
+    eval $COMMAND
+
     if [ ! -z $BUNDLE_IS_RELOCATABLE ] && [ $BUNDLE_IS_RELOCATABLE -eq 0 ];then
         rm "$DIR/Info.plist"
     fi
-
 fi
-
-echo $COMMAND
-exit
-
-#need to test it
-
-eval $COMMAND
-
-#Final goal #pkgbuild --identifier "${BUNDLEID}" --component-plist "$DIR/Info.plist" --root "$DIR/payload/"  --install-location "${LOCATION}" --scripts "$DIR/scripts/" --version "${VERSION}" "$DIR/${BUNDLEID}-${BUILD}.pkg"

@@ -8,5 +8,3 @@ Scripts
         #!/bin/sh
         YOUR CODE HERE
     3 - Copy these files to the scripts folder. (be aware that they will be converted to executable files)
-
-lGhnkQQcxrzqHO6lwJUcAsvvYOJrCt9uDM7J99h4yOI=
