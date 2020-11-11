@@ -69,7 +69,7 @@ else
                 fi
 
             else
-                cp /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
+                cp -rf /Volumes/SMB/"$FILETOCOPY" "$FILEDESTDMATION"
 
                 if [ -e "$FILEDESTDMATION/$FILETOCOPY" ]; then
                     echo "$FILETOCOPY - Copied"
@@ -110,7 +110,7 @@ else
 
         if [ $DELETEFILE -eq 1 ];then
             echo 'Deleting file ...'
-            rm "$FILEDESTDMATION/$FILETOCOPY" > /dev/null 2>&1
+            rm -rf "$FILEDESTDMATION/$FILETOCOPY" > /dev/null 2>&1
 
             if [ $? -eq 0 ];then
                 echo 'File deleted'
