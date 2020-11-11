@@ -69,7 +69,7 @@ fi
 
 if [ $DELETEFILE == 1 ];then
     echo 'Deleting file ...'
-    rm "$FILEDESTDMATION/$FILETOCOPY" > /dev/null 2>&1
+    rm -rf "$FILEDESTDMATION/$FILETOCOPY" > /dev/null 2>&1
 
     if [ $? == 0 ];then
         echo 'File deleted'
