@@ -16,7 +16,7 @@ LOCATION='/Applications'
 BUNDLE_IS_RELOCATABLE='0'
 DEVELOPER_ID_INSTALLER=''
 
-if [ -z $BUNDLEID ] || [ -z $VERSION ];then
+if [ -z "$BUNDLEID" ] || [ -z "$VERSION" ];then
     echo "Please, use the use at least this scripts arguments:"
     echo "BUNDLEID (com.app...) VERSION (pkg version)"
     exit
@@ -76,7 +76,7 @@ else
 
     COMMAND="pkgbuild --identifier $BUNDLEID"
 
-    if [ ! -z $DEVELOPER_ID_INSTALLER ];then
+    if [ ! -z "$DEVELOPER_ID_INSTALLER" ];then
         COMMAND+=" --sign Developer ID Installer: $DEVELOPER_ID_INSTALLER"
     fi
 
