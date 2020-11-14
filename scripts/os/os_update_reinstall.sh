@@ -31,11 +31,11 @@ else
                 APP_NAME="$(echo $(basename $FILE))" #using echo I transform the path into a string to be compared with a string
                 
                 if [ -z "$DESIRED_INSTALLER" ];then
-                    break
+                    break #If the DESIRED INSTALLER parameter is empty, the first installer found on the mac will be used
                 else
 
                     if [ "$APP_NAME" == "$DESIRED_INSTALLER" ];then
-                        break #If the DESIRED INSTALLER parameter is empty, the first installer found on the mac will be used
+                        break
                     else
                         APP_NAME=''
                     fi
@@ -43,8 +43,10 @@ else
             done
 
             if [ -z "$APP_NAME" ];then
-                echo 'Desired installer not found'
+                echo 'Desired installer not found exiting ...'
             else
+                echo "$APP_NAME found starting reinstall ..."
+
                 APP_NAME_PATH=${APP_NAME// /\\ }
                 COMMAND="/Applications/$APP_NAME_PATH/Contents/Resources/startosinstall"
 
@@ -54,7 +56,7 @@ else
                     PARAMETERS='--agreetolicense --nointeraction'
                 fi
 
-                echo $COMMAND $PARAMETERS
+                eval $COMMAND $PARAMETERS
                 
             fi
         fi
