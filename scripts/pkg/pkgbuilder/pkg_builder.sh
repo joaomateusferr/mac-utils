@@ -56,7 +56,7 @@ else
 
     else
 
-        if [ -z $LOCATION ] ;then
+        if [ -z "$LOCATION" ] ;then
 
             echo "If there is a payload there must be an installation location"
             echo "Please, use the use at least this scripts arguments:"
