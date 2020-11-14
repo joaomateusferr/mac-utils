@@ -2,6 +2,7 @@
 
 #Developer notes
 #This script does not work for 10.13.x instalers
+#DESIRED_INSTALLER (Install macOS *.app) -> Chnage * to the name of the desired version
 
 ERASE_VOLUME=0
 DESIRED_INSTALLER='Install macOS Big Sur.app'
@@ -10,7 +11,7 @@ APP_NAME='' #Is important to initialize it as empty for the APP_NAME to be fille
 
 if [ -z $ERASE_VOLUME ];then
     echo 'Please, use the scripts parameters:'
-    echo 'ERASE_VOLUME (1 or 0) DESIRED_INSTALLER (Install macOS *.app)' #Chnage * to the name of the desired version
+    echo 'ERASE_VOLUME (1 or 0)'
 else
 
     if [ $EUID -ne 0 ]; then
