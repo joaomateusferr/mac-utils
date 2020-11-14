@@ -20,7 +20,7 @@ FILEDESTDMATION='/tmp/test'
 #ip or hostname
 SERVER='192.168.0.172'
 
-if [ $EUID -ne 0 ]; then
+if [ $EUID -ne 0 ]; then #Create folders in /Volumes equire root privileges
     echo 'No root privileges detected!'
     echo 'Please, run this script as root'
 
