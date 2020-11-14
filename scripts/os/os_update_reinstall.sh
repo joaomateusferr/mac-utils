@@ -14,7 +14,7 @@ if [ -z $ERASE_VOLUME ];then
     echo 'ERASE_VOLUME (1 or 0)'
 else
 
-    if [ $EUID -ne 0 ]; then
+    if [ $EUID -ne 0 ]; then #use startosinstall equire root privileges
         echo 'No root privileges detected!'
         echo 'Please, run this script as root'
     else

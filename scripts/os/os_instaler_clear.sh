@@ -5,7 +5,7 @@
 
 KEEP_INSTALLER='Install macOS Big Sur.app'
 
-if [ $EUID -ne 0 ]; then
+if [ $EUID -ne 0 ]; then #delete files in /Applications require root privileges
     echo 'No root privileges detected!'
     echo 'Please, run this script as root'
 else
@@ -30,8 +30,9 @@ else
 
             else
 
-                if [ "$APP_NAME" != "$KEEP_INSTALLER" ];then
-                    
+                if [ "$APP_NAME" == "$KEEP_INSTALLER" ];then
+                    echo "$APP_NAME - Not deleted"
+                else
                     eval "rm -rf $FILE"
 
                     if [ $? -eq 0 ] ; then
@@ -39,9 +40,6 @@ else
                     else 
                         echo "Error while deleting $APP_NAME"    
                     fi
-
-                else
-                    echo "$APP_NAME - Not deleted"
                 fi
             fi
             
