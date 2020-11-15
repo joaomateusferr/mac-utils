@@ -18,7 +18,7 @@ else
 
             APP_NAME="$(echo $(basename $FILE))" #using echo I transform the path into a string to be compared with a string
                     
-            if [ -z "$DESIRED_INSTALLERKEEP_KEEP" ];then
+            if [ -z "$KEEP_INSTALLER" ];then
                 
                 eval "rm -rf $FILE"
 
