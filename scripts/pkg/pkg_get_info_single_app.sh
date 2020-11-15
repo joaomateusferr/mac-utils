@@ -7,6 +7,10 @@
 #fix it 
 #Use the "pwd" command to get the pkg path because it must contain the entire path
 
+#USER_PKG_PATH='~/Downloads/Google Chrome.pkg'
+#REAL_USER_PKG_PATH=${USER_PKG_PATH// /\\ }
+#eval "cd $REAL_USER_PKG_PATH"
+
 PATH_TO_PKG='/Users/joaoferreira/Downloads/Google\ Chrome.pkg'
 
 APP_COUNT=0
