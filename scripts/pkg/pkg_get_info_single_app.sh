@@ -9,13 +9,29 @@ PATH_TO_PKG='/Users/joaoferreira/Downloads/GoogleChrome.pkg'
 
 FOLDER_TO_EXTRACT_TO='/private/tmp/extracted_pkg'
 
-if [ -e "$FOLDER_TO_EXTRACT_TO" ];then
-    rm -rf "$FOLDER_TO_EXTRACT_TO"
-fi
+#if [ -e "$FOLDER_TO_EXTRACT_TO" ];then
+    #rm -rf "$FOLDER_TO_EXTRACT_TO"
+#fi
 
-pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
+#pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
 
 #remember to fix PKG_NAME and APP_NAME whit spaces
+
+if [ ! -e $FOLDER_TO_EXTRACT_TO/*.pkg ];then
+    echo 'There are no Install macOS .app file on this mac to reinstall macOS'
+else
+
+    for PKG in $FOLDER_TO_EXTRACT_TO/*.pkg; do  
+            #echo $PKG
+            APP_PATH=${PKG// /\\ }
+            echo $APP_PATH
+            exit
+    done
+    
+    exit
+    defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist CFBundleIdentifier
+    exit
+fi
 
 PKG_NAME=$(ls "$FOLDER_TO_EXTRACT_TO" | grep '\.pkg$' | head -1)
 
@@ -34,15 +50,15 @@ if [ -z "$PKG_NAME" ];then
     exit
 fi
 
-eval "cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'"
-exit
+#eval "cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'"
+#exit
 
 APP_BUNDLE=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist CFBundleIdentifier)
+echo $APP_BUNDLE
+exit
 APP_VERSION=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist CFBundleShortVersionString)
-
+#rm -rf "$FOLDER_TO_EXTRACT_TO"
 echo 'App Info: '
 echo "Name: $APP_NAME"
 echo "Bundle: $APP_BUNDLE"
 echo "Version: $APP_VERSION" 
-
-rm -rf "$FOLDER_TO_EXTRACT_TO"
