@@ -9,40 +9,46 @@ PATH_TO_PKG='/Users/joaoferreira/Downloads/GoogleChrome.pkg'
 
 FOLDER_TO_EXTRACT_TO='/private/tmp/extracted_pkg'
 
-if [ -e "$FOLDER_TO_EXTRACT_TO" ];then
-    rm -rf "$FOLDER_TO_EXTRACT_TO"
+#if [ -e "$FOLDER_TO_EXTRACT_TO" ];then
+    #rm -rf "$FOLDER_TO_EXTRACT_TO"
+#fi
+
+#pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
+
+cd $FOLDER_TO_EXTRACT_TO
+
+if [ ! -e "$FOLDER_TO_EXTRACT_TO"/*.pkg ];then #need to fix it
+    echo 'There are no .pkg file on the folder'
+else
+
+    for PKG in $FOLDER_TO_EXTRACT_TO/*.pkg; do
+              
+        PKG_PATH=${PKG// /\\ }
+        eval "cd $PKG_PATH/Payload"
+
+        for APP in *.app; do  
+                
+            APP_PATH=${APP// /\\ }
+            eval "cd $APP_PATH"
+                
+            APP_DIR=$(pwd)
+            APP_DIR_PATH=${APP_DIR// /\\ }
+                
+            APP_NAME=$APP
+            APP_BUNDLE=$(eval "defaults read $APP_DIR_PATH/Contents/Info.plist CFBundleIdentifier")
+            APP_VERSION=$(eval "defaults read $APP_DIR_PATH/Contents/Info.plist CFBundleShortVersionString")
+
+            echo '-----------------------------------------'    
+            echo 'App Info: '
+            echo "Name: $APP_NAME"
+            echo "Bundle: $APP_BUNDLE"
+            echo "Version: $APP_VERSION"
+            echo '-----------------------------------------' 
+            cd ..
+        done
+        cd ..
+    done
+    cd ..
+    cd ..
+    #rm -rf "$FOLDER_TO_EXTRACT_TO"
 fi
-
-pkgutil --expand-full $PATH_TO_PKG $FOLDER_TO_EXTRACT_TO
-
-#remember to fix PKG_NAME and APP_NAME whit spaces
-
-PKG_NAME=$(ls "$FOLDER_TO_EXTRACT_TO" | grep '\.pkg$' | head -1)
-
-if [ -z "$PKG_NAME" ];then
-    echo 'Unable to find the pkg content'
-    exit
-fi
-
-APP_NAME=$(ls "$FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload" | grep '\.app$' | head -1)
-APP_NAME_PATH=${APP_NAME// /\\ }
-
-echo $APP_NAME_PATH
-
-if [ -z "$PKG_NAME" ];then
-    echo 'Unable to find a .app inside the pkg payload'
-    exit
-fi
-
-eval "cat $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist | grep -A1 CFBundleShortVersionString | grep string | sed 's/<[^>]*>//g'"
-exit
-
-APP_BUNDLE=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist CFBundleIdentifier)
-APP_VERSION=$(defaults read $FOLDER_TO_EXTRACT_TO/$PKG_NAME/Payload/$APP_NAME_PATH/Contents/Info.plist CFBundleShortVersionString)
-
-echo 'App Info: '
-echo "Name: $APP_NAME"
-echo "Bundle: $APP_BUNDLE"
-echo "Version: $APP_VERSION" 
-
-rm -rf "$FOLDER_TO_EXTRACT_TO"
