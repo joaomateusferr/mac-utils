@@ -5,25 +5,36 @@ if [ $EUID -ne 0 ]; then #delete users and user's folder equire root privileges
     echo 'Please, run this script as root'
 else
 
-    #check if the user exists here
+    #check if the user exists
 
-    /usr/bin/dscl . -delete "/Users/$USER_ACC_NAME";
+    id $USER_ACC_NAME > /dev/null 2>&1
 
     if [ $? -eq 0 ] ; then
-        echo "account $USER_ACC_NAME - deleted"
-    else 
-        echo "Error while deleting $USER_ACC_NAME"    
-    fi
+        echo "existe"
 
-    if [ -e "/Users/$USER_ACC_NAME" ]; then 
-        
-        rm -rf "/Users/$USER_ACC_NAME";
+        exit
+
+        /usr/bin/dscl . -delete "/Users/$USER_ACC_NAME";
 
         if [ $? -eq 0 ] ; then
-            echo "/Users/$USER_ACC_NAME - deleted"
+            echo "account $USER_ACC_NAME - deleted"
         else 
-            echo "Error while deleting /Users/$USER_ACC_NAME"    
+            echo "Error while deleting $USER_ACC_NAME"    
         fi
+
+        if [ -e "/Users/$USER_ACC_NAME" ]; then 
+            
+            rm -rf "/Users/$USER_ACC_NAME";
+
+            if [ $? -eq 0 ] ; then
+                echo "/Users/$USER_ACC_NAME - deleted"
+            else 
+                echo "Error while deleting /Users/$USER_ACC_NAME"    
+            fi
+        fi
+
+    else 
+        echo "n exisate"    
     fi
 
 fi
