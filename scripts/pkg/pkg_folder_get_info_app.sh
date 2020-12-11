@@ -35,6 +35,7 @@ for FULL_PKG in $FOLDER/*.pkg; do
         PKG_FILE=$(ls | grep '\.pkg$' | head -1)
 
         if [ -z "$PKG_FILE" ];then
+            rm -rf "$FOLDER_TO_EXTRACT_TO"
             echo 'No internal .pkg file found in the package ignoring...'
         else
             for PKG in $FOLDER_TO_EXTRACT_TO/*.pkg; do
