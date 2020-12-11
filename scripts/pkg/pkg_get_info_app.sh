@@ -30,6 +30,11 @@ if [ $? -eq 0 ];then
     for PKG in $FOLDER_TO_EXTRACT_TO/*.pkg; do
                 
         PKG_PATH=${PKG// /\\ }
+
+        if [ ! -e "$PKG_PATH/Payload" ];then #ignoring pkgs without payload
+            continue
+        fi
+
         eval "cd $PKG_PATH/Payload"
 
         for APP in *.app; do
