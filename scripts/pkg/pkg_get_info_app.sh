@@ -1,15 +1,8 @@
 #!/bin/bash
 
 #Developer notes
-#Currently this script only get data from pkgs that contains a single .app file if there is more than one the first in alphabetical order will be taken into account
 #The command "pkgutil --expand-full" uses macos environment variables to work so please run this script in Terminal app
-
-#fix it 
-#Use the "pwd" command to get the pkg path because it must contain the entire path
-
-#USER_PKG_PATH='~/Downloads/Google Chrome.pkg'
-#REAL_USER_PKG_PATH=${USER_PKG_PATH// /\\ }
-#eval "cd $REAL_USER_PKG_PATH"
+#Use the "pwd" command to get the pkg path because it must contain the entire path #fix it
 
 PATH_TO_PKG='/Users/joaoferreira/Downloads/Google\ Chrome.pkg'
 
@@ -29,7 +22,7 @@ if [ $? -eq 0 ];then
     PKG_FILE=$(ls | grep '\.pkg$' | head -1)
 
     if [ -z "$PKG_FILE" ];then
-        echo 'No internal .pkg file found in the package'
+        echo 'No internal .pkg file found in the package exiting...'
         exit
     fi
 
@@ -45,6 +38,11 @@ if [ $? -eq 0 ];then
             fi
                 
             APP_PATH=${APP// /\\ }
+
+            if [ ! -e "$PKG_PATH/Payload" ];then #ignoring pkgs without payload
+                continue
+            fi
+
             eval "cd $APP_PATH"
                 
             APP_DIR=$(pwd)
