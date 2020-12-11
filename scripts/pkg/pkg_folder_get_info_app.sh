@@ -11,7 +11,7 @@ FULL_PKG_COUNT=0
 
 for FULL_PKG in $FOLDER/*.pkg; do
 
-    if [ "$FULL_PKG" == "$FOLDER/*.pkg" ];then   #the $FULL_PKG variable will be *.pkg when there is no .pkg inside the folder
+    if [ "$FULL_PKG" == "$FOLDER/*.pkg" ];then   #the $FULL_PKG variable will be $FOLDER/*.pkg when there is no .pkg inside the folder
         break
     fi
 
