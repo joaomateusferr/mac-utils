@@ -4,7 +4,7 @@
 #The command "pkgutil --expand-full" uses macos environment variables to work so please run this script in Terminal app
 #Use the "pwd" command to get the pkg path because it must contain the entire path #fix it
 
-PATH_TO_PKG='/Users/joaoferreira/Downloads/Google\ Chrome.pkg'
+PATH_TO_PKG='/Users/joaoferreira/Downloads/Brave-Browser.pkg'
 
 APP_COUNT=0
 FOLDER_TO_EXTRACT_TO='/private/tmp/extracted_pkg'
@@ -22,6 +22,7 @@ if [ $? -eq 0 ];then
     PKG_FILE=$(ls | grep '\.pkg$' | head -1)
 
     if [ -z "$PKG_FILE" ];then
+        rm -rf "$FOLDER_TO_EXTRACT_TO"
         echo 'No internal .pkg file found in the package exiting...'
         exit
     fi
