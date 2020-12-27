@@ -48,6 +48,10 @@ for FULL_PKG in $FOLDER/*.pkg; do
 
                 eval "cd $PKG_PATH/Payload"
 
+                if [ -e "$PKG_PATH/Payload/Aplications" ];then
+                    eval "cd $PKG_PATH/Payload/Aplications/"
+                fi
+
                 for APP in *.app; do
 
                     if [ "$APP" == "*.app" ];then   #the $APP variable will be *.app when there is no .app inside the internal package
@@ -73,6 +77,11 @@ for FULL_PKG in $FOLDER/*.pkg; do
                     APP_COUNT=$(( $APP_COUNT + 1 )) 
                     cd ..
                 done
+
+                if [ -e "$PKG_PATH/Payload/Aplications" ];then
+                    cd ..
+                fi
+
                 cd ..
             done
             cd ..
