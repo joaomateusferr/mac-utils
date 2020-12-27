@@ -22,3 +22,5 @@ YOUR CODE HERE
 ```
 
 3 - Copy these files to the scripts folder. (be aware that they will be converted to executable files backup the files if necessary)
+
+**PS:** Not tested on  Apple Silicon mac yet!
