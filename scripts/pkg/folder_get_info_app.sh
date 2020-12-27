@@ -48,8 +48,8 @@ for FULL_PKG in $FOLDER/*.pkg; do
 
                 eval "cd $PKG_PATH/Payload"
 
-                if [ -e "$PKG_PATH/Payload/Aplications" ];then
-                    eval "cd $PKG_PATH/Payload/Aplications/"
+                if [ -e "Applications/" ];then
+                    cd Applications
                 fi
 
                 for APP in *.app; do
@@ -78,7 +78,7 @@ for FULL_PKG in $FOLDER/*.pkg; do
                     cd ..
                 done
 
-                if [ -e "$PKG_PATH/Payload/Aplications" ];then
+                if [ -e "Applications" ];then
                     cd ..
                 fi
 
