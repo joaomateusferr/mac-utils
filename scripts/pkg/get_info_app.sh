@@ -37,6 +37,10 @@ if [ $? -eq 0 ];then
 
         eval "cd $PKG_PATH/Payload"
 
+        if [ -e "Applications/" ];then
+            cd Applications
+        fi
+
         for APP in *.app; do
 
             if [ "$APP" == "*.app" ];then   #the $APP variable will be *.app when there is no .app inside the internal package
@@ -67,6 +71,11 @@ if [ $? -eq 0 ];then
             APP_COUNT=$(( $APP_COUNT + 1 )) 
             cd ..
         done
+
+        if [ -e "Applications" ];then
+            cd ..
+        fi
+
         cd ..
     done
     cd ..
