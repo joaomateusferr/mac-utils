@@ -11,6 +11,10 @@
 INCOGNITOMODEAVAILABILITY=$1
 USER=$2
 
+if [ -z "$INCOGNITOMODEAVAILABILITY" ];then
+    INCOGNITOMODEAVAILABILITY='1'
+fi
+
 if [ -z "$USER" ];then
     USER=$(ls -l /dev/console | awk {'print $3'})
 else
