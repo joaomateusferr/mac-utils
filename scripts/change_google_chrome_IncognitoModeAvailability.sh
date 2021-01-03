@@ -3,7 +3,7 @@
 #Developer notes
 #For this script to work completely the device needs to be restarted
 
-#IncognitoModeAvailability values
+#IncognitoModeAvailability possible values
 #0 -> disable
 #1 -> enable
 #2 -> enforce
