@@ -30,6 +30,6 @@ else
     if [ $? -eq 0 ]; then
         echo 'Google Chrome IncognitoModeAvailability changed, please restart the device for the settings to be applied.'
     else 
-       echo 'Error while trying to disable screensaver.'    
+       echo 'Error while trying to change Google Chrome IncognitoModeAvailability.'    
     fi
 fi
