@@ -19,6 +19,7 @@ The DEVELOPER_ID_INSTALLER parameter must contain only the id following the patt
 **Not tested on  Apple Silicon mac yet!**
 
 This script cannot be used to generate a os pkg containing macOS Big Sur because we found the following error: **pkgbuild: error: The operation couldn’t be completed. File too large**
+
 The reason for this failure is that the Big Sur installer application contains a single file Contents / SharedSupport / SharedSupport.dmg which is larger than 8GB. While a pkg file can be larger than 8GB, there are limitations in the installer package format which preclude individual files in the pkg payload to be larger than that.
 
 **For more information about this problem see the link**: https://scriptingosx.com/2020/11/deploying-the-big-sur-installer-application/
