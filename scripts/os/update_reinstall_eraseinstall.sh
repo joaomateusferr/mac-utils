@@ -3,6 +3,16 @@
 #Developer notes
 #This script does not work for 10.13.x instalers
 #DESIRED_INSTALLER (Install macOS *.app) -> Chnage * to the name of the desired version
+
+#Additional notes
+
+#unfortunately the following command does not work on macOS Catalina, high hopes for Big Sur for now download the .app manualy or use a pkg to deply it
+#softwareupdate --download --fetch-full-installer --full-installer-version 10.15.7
+
+#A good option would be to use fetch-install-pkg which can be found in the link below
+#https://github.com/scriptingosx/fetch-installer-pkg
+
+#For more details on how to use the start install for Apple Silicon devices check the link below
 #https://www.jamf.com/blog/reinstall-a-clean-macos-with-one-button/
 
 ERASE_VOLUME=0
@@ -19,10 +29,11 @@ else
     
     #Checking on which arch this script is running
     ARCH="$(uname -m)"
+    ARCH="arm64"
 
-    if [ "$ARCH" = "x86_64" ]; then
+    if [ "$ARCH" == "x86_64" ];then
 
-        if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+        if [ "$(sysctl -in sysctl.proc_translated)" == "1" ];then
 
             echo "Running on Rosetta 2"
             DEVICE_ARCH='Apple Silicon'
@@ -31,7 +42,7 @@ else
             DEVICE_ARCH='Intel'
         fi
 
-    elif [ "$ARCH" = "arm64" ]; then
+    elif [ "$ARCH" == "arm64" ];then
 
         echo "Running on ARM"
         DEVICE_ARCH='Apple Silicon'
@@ -40,7 +51,7 @@ else
         exit
     fi
 
-    fi [ "$DEVICE_ARCH" = "Apple Silicon" ]; then
+    if [ "$DEVICE_ARCH" == "Apple Silicon" ];then
 
         if [ -z $ADM_USER ];then
             echo 'The device is an Apple silicon, the admin user is required to perform this operation exiting ...'
@@ -58,9 +69,6 @@ else
         echo 'No root privileges detected!'
         echo 'Please, run this script as root'
     else
-
-        #unfortunately the following command does not work on macOS Catalina, high hopes for Big Sur for now download the .app manualy or use a pkg to deply it
-        #softwareupdate --download --fetch-full-installer --full-installer-version 10.15.7
 
         if [ ! -e /Applications/Install\ macOS*.app ];then
             echo 'There are no Install macOS .app file on this mac to reinstall macOS'
@@ -87,12 +95,13 @@ else
             else
                 echo "$APP_NAME found starting reinstall ..."
 
-                #add echo 'P@55w0rd' | to COMMAND here if is apple silicon
+                if [ "$DEVICE_ARCH" == "Apple Silicon" ];then
+                    USER_CREDENTIALS="echo "$ADM_PASSWORD" | "
+                    COMMAND_CREDENTIALS="--user $ADM_USER --stdinpass"
+                fi
 
                 APP_NAME_PATH=${APP_NAME// /\\ }
                 COMMAND="/Applications/$APP_NAME_PATH/Contents/Resources/startosinstall"
-
-
 
                 if [ $ERASE_VOLUME -eq 1 ]; then
                     PARAMETERS='--agreetolicense --eraseinstall --forcequitapps --newvolumename "Macintosh HD" --nointeraction'
@@ -100,11 +109,11 @@ else
                     PARAMETERS='--agreetolicense --forcequitapps --nointeraction'
                 fi
 
-                #add --user adminuser --stdinpass to PARAMETERS here if is apple silicon
-
-                echo $COMMAND $PARAMETERS
-                #eval $COMMAND $PARAMETERS
-                
+                if [ "$DEVICE_ARCH" == "Apple Silicon" ];then
+                    eval $USER_CREDENTIALS $COMMAND $PARAMETERS $COMMAND_CREDENTIALS
+                else
+                    eval $COMMAND $PARAMETERS
+                fi
             fi
         fi
     fi
