@@ -3,9 +3,12 @@
 #Developer notes
 #This script does not work for 10.13.x instalers
 #DESIRED_INSTALLER (Install macOS *.app) -> Chnage * to the name of the desired version
+#https://www.jamf.com/blog/reinstall-a-clean-macos-with-one-button/
 
 ERASE_VOLUME=0
 DESIRED_INSTALLER='Install macOS Big Sur.app'
+ADM_USER='ADMUSER'
+ADM_PASSWORD='ADMPASSWORD'
 
 APP_NAME='' #Is important to initialize it as empty for the APP_NAME to be filled correctly
 
@@ -13,6 +16,43 @@ if [ -z $ERASE_VOLUME ];then
     echo 'Please, use the scripts parameters:'
     echo 'ERASE_VOLUME (1 or 0)'
 else
+    
+    #Checking on which arch this script is running
+    ARCH="$(uname -m)"
+
+    if [ "$ARCH" = "x86_64" ]; then
+
+        if [ "$(sysctl -in sysctl.proc_translated)" = "1" ]; then
+
+            echo "Running on Rosetta 2"
+            DEVICE_ARCH='Apple Silicon'
+        else
+            echo "Running on native Intel"
+            DEVICE_ARCH='Intel'
+        fi
+
+    elif [ "$ARCH" = "arm64" ]; then
+
+        echo "Running on ARM"
+        DEVICE_ARCH='Apple Silicon'
+    else
+        echo "Unknown architecture: $ARCH exiting ..."
+        exit
+    fi
+
+    fi [ "$DEVICE_ARCH" = "Apple Silicon" ]; then
+
+        if [ -z $ADM_USER ];then
+            echo 'The device is an Apple silicon, the admin user is required to perform this operation exiting ...'
+            exit
+        else
+            if [ -z $ADM_PASSWORD ];then
+                echo 'The device is an Apple silicon, the admin user is required to perform this operation exiting ...'
+                exit
+            fi
+        fi
+
+    fi
 
     if [ $EUID -ne 0 ]; then #use startosinstall equire root privileges
         echo 'No root privileges detected!'
@@ -47,16 +87,23 @@ else
             else
                 echo "$APP_NAME found starting reinstall ..."
 
+                #add echo 'P@55w0rd' | to COMMAND here if is apple silicon
+
                 APP_NAME_PATH=${APP_NAME// /\\ }
                 COMMAND="/Applications/$APP_NAME_PATH/Contents/Resources/startosinstall"
 
+
+
                 if [ $ERASE_VOLUME -eq 1 ]; then
-                    PARAMETERS='--agreetolicense --eraseinstall --newvolumename "Macintosh HD" --nointeraction'
+                    PARAMETERS='--agreetolicense --eraseinstall --forcequitapps --newvolumename "Macintosh HD" --nointeraction'
                 else
-                    PARAMETERS='--agreetolicense --nointeraction'
+                    PARAMETERS='--agreetolicense --forcequitapps --nointeraction'
                 fi
 
-                eval $COMMAND $PARAMETERS
+                #add --user adminuser --stdinpass to PARAMETERS here if is apple silicon
+
+                echo $COMMAND $PARAMETERS
+                #eval $COMMAND $PARAMETERS
                 
             fi
         fi
