@@ -47,7 +47,7 @@ else
             exit
         else
             if [ -z $ADM_PASSWORD ];then
-                echo 'The device is an Apple silicon, the admin user is required to perform this operation exiting ...'
+                echo 'The device is an Apple silicon, the admin password is required to perform this operation exiting ...'
                 exit
             fi
         fi
