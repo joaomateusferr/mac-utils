@@ -7,7 +7,7 @@
 #Additional notes
 
 #unfortunately the following command does not work on macOS Catalina, high hopes for Big Sur for now download the .app manualy or use a pkg to deply it
-#softwareupdate --download --fetch-full-installer --full-installer-version 10.15.7
+#softwareupdate --download --fetch-full-installer --full-installer-version 11.0.1
 
 #A good option would be to use fetch-install-pkg which can be found in the link below
 #https://github.com/scriptingosx/fetch-installer-pkg
