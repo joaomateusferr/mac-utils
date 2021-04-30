@@ -3,10 +3,10 @@
 #For more details on on this matter visit:
 #https://stackoverflow.com/questions/4023830/how-to-compare-two-strings-in-dot-separated-version-format-in-bash
 
-OS_VERSION=$(sw_vers -productVersion)
+RUNNING_VERSION='11.2.3'
 MINIMUM_VERSION='11.0.1'
 
-vercomp () {
+versionCompare () {
     if [[ $1 == $2 ]]
     then
         return 0
@@ -37,7 +37,7 @@ vercomp () {
     return 0
 }
 
-vercomp $OS_VERSION $MINIMUM_VERSION #compares the os version with the minimum required version
+versionCompare $RUNNING_VERSION $MINIMUM_VERSION #compares the os version with the minimum required version
 RESULT=$?
 
 if [ $RESULT -eq 0 ] ; then
