@@ -1,15 +1,11 @@
 # How to restore macOS on a Apple silicon mac
 
-**Additional notes** 
-===
-This is a pain to do avoid if possible!
+**This is a pain to do avoid if possible!**
 
 **General instructions**
 ===
 
-
 There are two ways to do this, the first is by creating a bootable usb drive and the second is using the Apple Configurator.
-
 
 If the mac **frimewere is damaged** in any way only the method using **Apple Configurator** can be used.
 When macoOS is installed on a mac Apple silicon using a **usb drive** the recovery is not overwritten so, when **the recovery version will not be the version installed** on the device.
@@ -26,7 +22,7 @@ How to unenroll a mac from from macOS Beta Programs
 
 2 - Find and click on Software Update.
 
-3 - Under the Software Update Gear(This Mac is enrolled in the Apple Beta Software Program), click on Details.
+3 - Under the Software Update Gear (This Mac is enrolled in the Apple Beta Software Program), click on Details.
 
 
 Bootable usb
