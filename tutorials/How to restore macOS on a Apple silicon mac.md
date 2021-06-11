@@ -24,6 +24,8 @@ How to unenroll a mac from from macOS Beta Programs
 
 3 - Under the Software Update Gear (This Mac is enrolled in the Apple Beta Software Program), click on Details.
 
+4 - On selecting Restore Defaults, you will no longer receive any beta software program updates.
+
 
 Bootable usb
 ---
@@ -31,6 +33,7 @@ add instructions here ...
 
 
 **Additional information!**
+
 Downgrade from macOS Monterey to Big Sur or Catalina on Intel and M1 Macs!: https://youtu.be/Ae_Vm39dxrA
 How to create a bootable installer for macOS: https://support.apple.com/en-us/HT201372
 
@@ -40,6 +43,7 @@ add instructions here ...
 
 
 **Additional information!**
+
 How To Set DFU Mode on M1 Apple Silicon MacBook - Reset Factory Settings: https://youtu.be/puL82I2B6Xk
 Revive or restore a Mac with Apple silicon with Apple Configurator 2: https://support.apple.com/en-us/guide/apple-configurator-2/apdd5f3c75ad/mac
 
