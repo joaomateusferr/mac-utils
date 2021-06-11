@@ -1,6 +1,6 @@
 # How to restore macOS on a Apple silicon mac
 
-**This is a pain to do avoid if possible!**
+**This is a real pain to do, avoid if possible!**
 
 **General instructions**
 ===
