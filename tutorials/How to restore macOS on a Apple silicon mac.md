@@ -1,6 +1,6 @@
 # How to restore/revive or change macOS versions on a Apple silicon mac
 
-:exclamation: | In case you can choose a specific model to use as a beta test device the macs mini or imacs are more suitable as it is easier to set the DFU mode no device.
+:exclamation: | In case you can choose a specific model to use as a beta test device the macs mini or imacs are more suitable as it is easier to set the DFU mode no the device.
 :---: | :---
 
 :warning: | If the mac frimewere is damaged in any way only the method using Apple Configurator 2 can be used.
