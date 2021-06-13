@@ -1,23 +1,19 @@
 # How to restore macOS on a Apple silicon mac
 
-**This is a real difficult to do, avoid if possible!**
-
-:exclamation: | This is a real difficult to do, avoid if possible.
-:---: | :---
-
 :warning: | If the mac frimewere is damaged in any way only the method using Apple Configurator can be used.
 :---: | :---
 
 :information_source: | There are two ways to overwrite the recovery of a apple silicon mac, through the method using the Apple Configurator or installing an update.
 :---: | :---
 
-In case of downgrade between a standard and a beta version it is possible to remove the beta version and overwrite the recovery by unenrolling the device from the beta program, click on Details), waiting for a standard version to be launched and then install it through the macos software update.
+:information_source: | In case of downgrade between a standard and a beta version it is possible to remove the beta version and overwrite the recovery by unenrolling the device from the beta program, click on Details), waiting for a standard version to be launched and then install it through the macos software update.
+:---: | :---
 
 :information_source: | There are two ways to do this, the first is by creating a bootable usb drive and the second is using the Apple Configurator.
 :---: | :---
 
 
-## How to unenroll a mac from from macOS Beta Programs
+## Unenroll a mac from from macOS Beta Program and wait for an update
 
 1 - Navigate to the System Preferences from the Apple menu.
 
@@ -61,6 +57,9 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 
 ## Apple Configurator 2
 
+:exclamation: | This is a real difficult to do, avoid if possible.
+:---: | :---
+
 add instructions here ...
 
 
@@ -73,7 +72,7 @@ Revive or restore a Mac with Apple silicon with Apple Configurator 2: https://su
 
 ## Acknowledgements
 
-Special thanks to Mr. Macintosh and Andrew Tsai for the videos found in the additional info section take a look at their youtube channels.
+Special thanks to Mr. Macintosh and Andrew Tsai for the videos found in the additional info sections, take a look at their youtube channels.
 
 
 Mr. Macintosh: https://www.youtube.com/channel/UC7FRPWLwRlhORhFHHywfqAg
