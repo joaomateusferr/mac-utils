@@ -84,7 +84,7 @@ Downgrade from macOS Monterey to Big Sur or Catalina on Intel and M1 Macs!: http
 How to create a bootable installer for macOS: https://support.apple.com/en-us/HT201372
 
 
-## Apple Configurator 2
+## Revive macOS using Apple Configurator 2
 
 :exclamation: | This is a real difficult and take some time to do, avoid if possible.
 :---: | :---
@@ -95,7 +95,7 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 :warning: | There are non-apple compatible cables, but to avoid compatibility problems use the apple USB C - USB C cable that comes with the macs.
 :---: | :---
 
-:information_source: | To install other versions than the last available you can download the IPSW (check the IPSW sources below) of the desired version and just drag the file to the device in DFU mode inside the apple configurator 2.
+:information_source: | To install other versions than the last available you can download the IPSW (check the IPSW sources below) of the desired version and just drag the file to the device in DFU mode inside the apple configurator 2 and then select the revive option.
 :---: | :---
 
 1 - Install Apple Configurator 2 on the working mac.
