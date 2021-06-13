@@ -2,18 +2,19 @@
 
 **This is a real difficult to do, avoid if possible!**
 
-## General instructions
-
-There are two ways to do this, the first is by creating a bootable usb drive and the second is using the Apple Configurator.
-
-If the mac **frimewere is damaged** in any way only the method using **Apple Configurator** can be used.
-
-:warning: | When macoOS is installed on a mac Apple silicon using a usb drive the recovery is not overwritten so, when the recovery version will not be the version installed on the device.
+:exclamation: | This is a real difficult to do, avoid if possible.
 :---: | :---
 
-There are two ways to overwrite the recovery of a apple silicon mac, through the method using the Apple Configurator or installing an update.
+:warning: | If the mac frimewere is damaged in any way only the method using Apple Configurator can be used.
+:---: | :---
 
-In case of downgrade between a standard and a **beta version** it is possible to remove the beta version and overwrite the recovery by unenrolling the device from the beta program, click on Details), waiting for a standard version to be launched and then install it through the macos software update.
+:information_source: | There are two ways to overwrite the recovery of a apple silicon mac, through the method using the Apple Configurator or installing an update.
+:---: | :---
+
+In case of downgrade between a standard and a beta version it is possible to remove the beta version and overwrite the recovery by unenrolling the device from the beta program, click on Details), waiting for a standard version to be launched and then install it through the macos software update.
+
+:information_source: | There are two ways to do this, the first is by creating a bootable usb drive and the second is using the Apple Configurator.
+:---: | :---
 
 
 ## How to unenroll a mac from from macOS Beta Programs
@@ -28,6 +29,9 @@ In case of downgrade between a standard and a **beta version** it is possible to
 
 
 ## Bootable usb
+
+:warning: | When macoOS is installed on a mac Apple silicon using a usb drive the recovery is not overwritten so, when the recovery version will not be the version installed on the device, if you want to overwrite recovery use the Apple Configurator 2 method.
+:---: | :---
 
 1 - Download the macOS .app from the mac app store looking for the version name or from the version macOS links in the apple support article if the desired version is not the last one available.
 
