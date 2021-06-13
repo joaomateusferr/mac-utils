@@ -1,2 +1,2 @@
-# Mac Scripts
-A repository that contains useful scripts for macOS using shell script.
+# Useful Scripts
+A repository that contains useful scripts for macOS and Ubuntu using shell script.
