@@ -12,10 +12,10 @@
 :information_source: | In case of downgrade between a standard and a beta version it is possible to remove the beta version and overwrite the recovery by unenrolling the device from the beta program, click on Details), waiting for a standard version to be launched and then install it through the macos software update.
 :---: | :---
 
-:information_source: | There are three ways to change the macOS version, the first one is unenrolling a mac from from macOS Beta Program and wait for an update (applicable to beta version only) the second is by using a bootable usb drive and the is the last one is using the Apple Configurator 2.
+:information_source: | There are three ways to change the macOS version, the first one is unenrolling a mac from macOS Beta Program and wait for an update (applicable to beta version only) the second is by using a bootable usb drive and the is the last one is using the Apple Configurator 2.
 :---: | :---
 
-## Unenroll a mac from from macOS Beta Program and wait for an update
+## Unenroll a mac from macOS Beta Program and wait for an update
 
 1 - Navigate to the System Preferences from the Apple menu.
 
