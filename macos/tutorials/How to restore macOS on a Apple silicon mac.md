@@ -1,6 +1,6 @@
 # How to restore macOS on a Apple silicon mac
 
-**This is a real pain to do, avoid if possible!**
+**This is a real difficult to do, avoid if possible!**
 
 **General instructions**
 ===
@@ -34,7 +34,14 @@ Bootable usb
 
 2 - Connect usb drive to mac.
 
-3 - Use the createinstallmedia command line utility which is found inside the .app form the macOS veriosn using the command ```sudo /Applications/Install\ macOS\ Version\ Name.app/Contents/Resources/createinstallmedia --volume /Volumes/VolumeName```
+3 - Use the createinstallmedia command line utility which is found inside the .app form the macOS veriosn using the command bellow (the command execution may take a while).
+```
+#Generic example
+sudo /Applications/Install\ macOS\ Version\ Name.app/Contents/Resources/createinstallmedia --volume /Volumes/VolumeName
+
+#Example for the latest version
+sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/usb
+```
 
 
 add instructions here ...
