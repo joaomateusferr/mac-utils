@@ -1,6 +1,6 @@
 # How to restore/revive or change macOS versions on a Apple silicon mac
 
-:exclamation: | In case you can choose a specific model to use as a beta test device the macs mini or imacs are more suitable as it is easier to set the device into DFU mode.
+:exclamation: | In case you can choose a specific model to use as a beta test device the macs mini or imacs are more suitable as it is easier to set the DFU mode no device.
 :---: | :---
 
 :warning: | If the mac frimewere is damaged in any way only the method using Apple Configurator 2 can be used.
@@ -110,7 +110,7 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 
 3 - Turn off the mac you want to install the macs in case it is on.
 
-4 - Set the mac you want to reinstall the macOS into DFU mode (check the apple article below to find what is the recovery port on your specific model).
+4 - Set the DFU mode on the mac you want to reinstall the macOS (check the apple article below to find what is the recovery port on your specific model).
 
 5 - In case everything works fine, on the working mac you will see a square written DFU in Apple Configurator 2 (there will be no feedback on mac where you want to reinstall macs).
 
