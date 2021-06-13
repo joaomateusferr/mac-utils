@@ -29,13 +29,23 @@ How to unenroll a mac from from macOS Beta Programs
 
 Bootable usb
 ---
+
+1 - Download the macOS .app from the mac app store looking for the version name or from the version macOS links in the apple support article if the desired version is not the last one available.
+
+2 - Connect usb drive to mac.
+
+3 - Use the createinstallmedia command line utility which is found inside the .app form the macOS veriosn using the command ```sudo /Applications/Install\ macOS\ Version\ Name.app/Contents/Resources/createinstallmedia --volume /Volumes/VolumeName```
+
+
 add instructions here ...
 
 
 **Additional information!**
 
 Downgrade from macOS Monterey to Big Sur or Catalina on Intel and M1 Macs!: https://youtu.be/Ae_Vm39dxrA
+
 How to create a bootable installer for macOS: https://support.apple.com/en-us/HT201372
+
 
 Apple Configurator 2
 ---
@@ -45,6 +55,7 @@ add instructions here ...
 **Additional information!**
 
 How To Set DFU Mode on M1 Apple Silicon MacBook - Reset Factory Settings: https://youtu.be/puL82I2B6Xk
+
 Revive or restore a Mac with Apple silicon with Apple Configurator 2: https://support.apple.com/en-us/guide/apple-configurator-2/apdd5f3c75ad/mac
 
 **Acknowledgements**
