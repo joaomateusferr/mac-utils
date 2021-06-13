@@ -1,6 +1,6 @@
-# How to restore macOS on a Apple silicon mac
+# How to restore/reinstall or change macOS versions on a Apple silicon mac
 
-:warning: | If the mac frimewere is damaged in any way only the method using Apple Configurator can be used.
+:warning: | If the mac frimewere is damaged in any way only the method using Apple Configurator 2 can be used.
 :---: | :---
 
 :information_source: | There are two ways to overwrite the recovery of a apple silicon mac, through the method using the Apple Configurator or installing an update.
@@ -9,7 +9,7 @@
 :information_source: | In case of downgrade between a standard and a beta version it is possible to remove the beta version and overwrite the recovery by unenrolling the device from the beta program, click on Details), waiting for a standard version to be launched and then install it through the macos software update.
 :---: | :---
 
-:information_source: | There are two ways to do this, the first is by creating a bootable usb drive and the second is using the Apple Configurator.
+:information_source: | There are three ways to change the macOS version, the first one is unenrolling a mac from from macOS Beta Program and wait for an update (applicable to beta version only) the second is by creating a bootable usb drive and the is the last one is using the Apple Configurator 2.
 :---: | :---
 
 
@@ -22,6 +22,14 @@
 3 - Under the Software Update Gear (This Mac is enrolled in the Apple Beta Software Program), click on Details.
 
 4 - On selecting Restore Defaults, you will no longer receive any beta software program updates.
+
+5 - Your Mac will ask to enter the Mac login Password. Once you verify the login passcode, Beta Updates will be removed automatically.
+
+6 - Waiting for a standard macOS version to be launched and then install it through software update.
+
+### Additional information
+
+How to Unenroll macOS Monterey Beta on MacBook Pro/Air, Mac: https://www.howtoisolve.com/how-to-unenroll-macos-beta-on-macbook-pro-air-mac-updated/
 
 
 ## Bootable usb
@@ -46,9 +54,7 @@ sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstall
 
 5 - Select the installation drive created earlier ().
 
-
-### Additional information!
-
+### Additional information
 
 Downgrade from macOS Monterey to Big Sur or Catalina on Intel and M1 Macs!: https://youtu.be/Ae_Vm39dxrA
 
@@ -62,19 +68,13 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 
 add instructions here ...
 
-
-### Additional information!
-
+### Additional information
 
 How To Set DFU Mode on M1 Apple Silicon MacBook - Reset Factory Settings: https://youtu.be/puL82I2B6Xk
 
 Revive or restore a Mac with Apple silicon with Apple Configurator 2: https://support.apple.com/en-us/guide/apple-configurator-2/apdd5f3c75ad/mac
 
+
 ## Acknowledgements
 
-Special thanks to Mr. Macintosh and Andrew Tsai for the videos found in the additional info sections, take a look at their youtube channels.
-
-
-Mr. Macintosh: https://www.youtube.com/channel/UC7FRPWLwRlhORhFHHywfqAg
-
-Andrew Tsai: https://www.youtube.com/channel/UCJ-hl32h5CokBhlGu95C1Xg
+Thanks to Jaysukh Patel, Mr. Macintosh and Andrew Tsai for the tutorials found in the additional info sections.
