@@ -33,7 +33,7 @@
 
 2 - Connect usb drive to mac.
 
-3 - Use the createinstallmedia command line utility which is found inside the .app form the macOS veriosn using the command bellow (the command execution may take a while).
+3 - Use the createinstallmedia command line utility which is found inside the .app form the macOS veriosn using the command bellow (the command execution may take a while and keep in mind that all data contained in the usb drive will be erased).
 ```
 #Generic example
 sudo /Applications/Install\ macOS\ Version\ Name.app/Contents/Resources/createinstallmedia --volume /Volumes/VolumeName
