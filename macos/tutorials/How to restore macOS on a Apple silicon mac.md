@@ -2,14 +2,13 @@
 
 **This is a real difficult to do, avoid if possible!**
 
-**General instructions**
-===
+## General instructions
 
 There are two ways to do this, the first is by creating a bootable usb drive and the second is using the Apple Configurator.
 
 If the mac **frimewere is damaged** in any way only the method using **Apple Configurator** can be used.
 
-!! When macoOS is installed on a mac Apple silicon using a **usb drive** the recovery is not overwritten so, when **the recovery version will not be the version installed** on the device.
+!!When macoOS is installed on a mac Apple silicon using a **usb drive** the recovery is not overwritten so, when **the recovery version will not be the version installed** on the device.
 
 There are two ways to overwrite the recovery of a apple silicon mac, through the method using the Apple Configurator or installing an update.
 
@@ -27,7 +26,7 @@ In case of downgrade between a standard and a **beta version** it is possible to
 4 - On selecting Restore Defaults, you will no longer receive any beta software program updates.
 
 
-##Bootable usb
+## Bootable usb
 
 1 - Download the macOS .app from the mac app store looking for the version name or from the version macOS links in the apple support article if the desired version is not the last one available.
 
@@ -67,8 +66,8 @@ How To Set DFU Mode on M1 Apple Silicon MacBook - Reset Factory Settings: https:
 
 Revive or restore a Mac with Apple silicon with Apple Configurator 2: https://support.apple.com/en-us/guide/apple-configurator-2/apdd5f3c75ad/mac
 
-##Acknowledgements
-===
+## Acknowledgements
+
 Special thanks to Mr. Macintosh and Andrew Tsai for the videos found in the additional info section take a look at their youtube channels.
 
 
