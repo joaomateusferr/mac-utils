@@ -54,7 +54,7 @@ Downgrade from macOS Monterey to Big Sur or Catalina on Intel and M1 Macs!: http
 How to create a bootable installer for macOS: https://support.apple.com/en-us/HT201372
 
 
-##Apple Configurator 2
+## Apple Configurator 2
 
 add instructions here ...
 
