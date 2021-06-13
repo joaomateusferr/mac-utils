@@ -89,9 +89,6 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 :exclamation: | This is a real difficult and take some time to do, avoid if possible.
 :---: | :---
 
-:exclamation: | This is a real difficult and take some time to do, avoid if possible.
-:---: | :---
-
 :warning: | When the mac goes into dfu mode it will not turn on normally until the reinstall starts, if you want to turn on the device normally without reinstalling the macOS to take the device out of dfu mode just repeat the sequence used to get into dfu mode again.
 :---: | :---
 
