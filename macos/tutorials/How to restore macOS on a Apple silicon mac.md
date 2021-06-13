@@ -8,8 +8,7 @@ There are two ways to do this, the first is by creating a bootable usb drive and
 
 If the mac **frimewere is damaged** in any way only the method using **Apple Configurator** can be used.
 
-:warning: | When macoOS is installed on a mac Apple silicon using a **usb drive** the recovery is not overwritten so, when **the recovery version will not be the version installed** on the device.
-:---: | :---
+:warning: When macoOS is installed on a mac Apple silicon using a **usb drive** the recovery is not overwritten so, when **the recovery version will not be the version installed** on the device.
 
 There are two ways to overwrite the recovery of a apple silicon mac, through the method using the Apple Configurator or installing an update.
 
