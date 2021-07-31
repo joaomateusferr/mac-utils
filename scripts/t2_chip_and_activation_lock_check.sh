@@ -54,7 +54,7 @@ else
                     echo "Activation lock status: $ACTIVATION_LOCK_STATUS"
                 fi
             fi
-
+            
         else
             echo 'The device have a T1 chip'
         fi
