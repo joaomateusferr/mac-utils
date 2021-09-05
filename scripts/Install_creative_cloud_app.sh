@@ -2,7 +2,6 @@
 
 CURRENT_USER='joao'
 CREATIVE_CLOUD_APP_PATH='/Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app'
-HOMEBREW_CACHE_PATH= "/Users/$CURRENT_USER/Library/Caches/Homebrew/"
 
 #Homebrew
 
@@ -12,7 +11,7 @@ if [ $? -ne 0 ] ; then
 
     echo 'Homebrew not installed, installing ...'
     
-    echo -ne "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubCURRENT_USERcontent.com/Homebrew/install/master/install.sh)" > /dev/null 2>&1 # Install Homebrew
+    su $CURRENT_USER -c 'echo -ne "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"' > /dev/null 2>&1 # Install Homebrew
 
     if [ $? -eq 0 ] ; then
         echo 'Homebrew installed'
@@ -38,7 +37,7 @@ fi
 
 #Creative Cloud
 
-#chown -R "$CURRENT_USER":admin HOMEBREW_CACHE_PATH
+chown -R "$CURRENT_USER":admin /Users/$CURRENT_USER/Library/Caches/Homebrew/
 
 if [ ! -d "$CREATIVE_CLOUD_APP_PATH" ];then
 
