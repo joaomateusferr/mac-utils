@@ -52,7 +52,7 @@ fi
 
 #Creative Cloud
 
-chown -R "$CURRENT_USER":admin /Users/$CURRENT_USER/Library/Caches/Homebrew/
+#chown -R "$CURRENT_USER":admin /Users/$CURRENT_USER/Library/Caches/Homebrew/
 
 if [ ! -d "$CREATIVE_CLOUD_APP_PATH" ];then
     echo 'Creative Cloud not installed, installing ...'
