@@ -57,7 +57,7 @@ chown -R "$CURRENT_USER":admin /Users/$CURRENT_USER/Library/Caches/Homebrew/
 if [ ! -d "$CREATIVE_CLOUD_APP_PATH" ];then
     echo 'Creative Cloud not installed, installing ...'
 else
-    echo 'Creative Cloud already installed, reinstalling ...'
+    echo 'Creative Cloud already installed, reinstalling / updating ...'
 fi
 
 su $CURRENT_USER -c 'brew reinstall adobe-creative-cloud' > /dev/null 2>&1 #the same command install or reintall depending on whether the app is installed or not
