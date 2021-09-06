@@ -46,11 +46,11 @@ fi
 su $CURRENT_USER -c 'brew reinstall adobe-creative-cloud' > /dev/null 2>&1 #the same command install or reintall depending on whether the app is installed or not
 
 if [ $? -eq 0 ] ; then
-    echo 'Creative Cloud reinstalled'
+    echo 'Creative Cloud installed'
 else 
     echo 'Error while installing Creative Cloud'    
 fi
 
 #if necessary, unistall
-#echo -ne 'y' |/bin/bash -c "$(curl -fsSL https://raw.githubCURRENT_USERcontent.com/Homebrew/install/master/uninstall.sh)"
+#echo -ne 'y' |/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
 #su $CURRENT_USER -c 'brew uninstall adobe-creative-cloud'
