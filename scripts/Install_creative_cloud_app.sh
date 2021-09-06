@@ -13,10 +13,10 @@ fi
 
 #User
 
-id $USER > /dev/null 2>&1
+id $CURRENT_USER > /dev/null 2>&1
 
 if [ $? -ne 0 ] ; then
-    echo 'Desired user not found ... exiting'
+    echo 'Desired user not found, exiting ...'
     exit
 fi
 
