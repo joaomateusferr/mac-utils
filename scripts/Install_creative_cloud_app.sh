@@ -3,6 +3,23 @@
 CURRENT_USER='joao'
 CREATIVE_CLOUD_APP_PATH='/Applications/Utilities/Adobe Creative Cloud/ACC/Creative Cloud.app'
 
+#Root
+
+if [ $EUID -ne 0 ]; then #this script require root privileges
+    echo 'No root privileges detected!'
+    echo 'Please, run this script as root'
+    exit
+fi
+
+#User
+
+id $USER > /dev/null 2>&1
+
+if [ $? -ne 0 ] ; then
+    echo 'Desired user not found ... exiting'
+    exit
+fi
+
 #Homebrew
 
 which brew > /dev/null 2>&1
