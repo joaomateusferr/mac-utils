@@ -104,6 +104,9 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 :warning: | The recovery USB port of the device which is in DFU mode may change depending on the mac model, check Apple's revive or restore tutorials to your specific model below.
 :---: | :---
 
+:warning: | The buttons combination to set your specific model on DFU mode may change depending on the mac model, check Apple's revive or restore tutorials to your specific model below.
+:---: | :---
+
 :information_source: | To install other versions than the last available you can download the IPSW (check the IPSW sources below) of the desired version and just drag the file to the device in DFU mode inside the apple configurator 2 and then select the revive option.
 :---: | :---
 
