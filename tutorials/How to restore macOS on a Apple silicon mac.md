@@ -98,13 +98,13 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 :warning: | When the mac goes into DFU mode it will not turn on normally until the reinstall starts, if you want to turn on the device normally without reinstalling the macOS to take the device out of DFU mode just repeat the sequence used to get into DFU mode again.
 :---: | :---
 
+:warning: | The buttons combination to set your specific model on DFU mode may change depending on the mac model, check Apple's revive or restore tutorials to your specific model below.
+:---: | :---
+
 :warning: | There are non-apple compatible cables, but to avoid compatibility problems use the apple USB C to USB C cable that comes with the macs.
 :---: | :---
 
-:warning: | The recovery USB port of the device which is in DFU mode may change depending on the mac model, check Apple's revive or restore tutorials to your specific model below.
-:---: | :---
-
-:warning: | The buttons combination to set your specific model on DFU mode may change depending on the mac model, check Apple's revive or restore tutorials to your specific model below.
+:warning: | The recovery USB port of the device which is on DFU mode may change depending on the mac model, check Apple's revive or restore tutorials to your specific model below.
 :---: | :---
 
 :information_source: | To install other versions than the last available you can download the IPSW (check the IPSW sources below) of the desired version and just drag the file to the device in DFU mode inside the apple configurator 2 and then select the revive option.
