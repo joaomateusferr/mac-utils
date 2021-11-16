@@ -1,4 +1,4 @@
-# How to restore/revive or change macOS versions on a Apple silicon mac
+# How to restore/revive or change macOS versions on a Apple silicon or T2 macs
 
 :exclamation: | In case you can choose a specific model to use as a beta test device, macs mini or imacs are more suitable as it is easier to set DFU mode on them.
 :---: | :---
@@ -101,16 +101,19 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 :warning: | There are non-apple compatible cables, but to avoid compatibility problems use the apple USB C to USB C cable that comes with the macs.
 :---: | :---
 
+:information_source: | The recovery USB port of the device which is in DFU mode may change depending on the mac model, check Apple's revive or restore tutorials to your specific model below.
+:---: | :---
+
 :information_source: | To install other versions than the last available you can download the IPSW (check the IPSW sources below) of the desired version and just drag the file to the device in DFU mode inside the apple configurator 2 and then select the revive option.
 :---: | :---
 
 1 - Install Apple Configurator 2 on the working mac.
 
-2 - Connect the working mac to the mac you want to reinstall the macs to using its recovery port (check the apple article below to  recovery port).
+2 - Connect the working mac to the mac you want to reinstall the macs to using it's recovery port (check the Apple's articles below to find what is the recovery port on your specific model).
 
 3 - Turn off the mac you want to install the macs in case it is on.
 
-4 - Set the DFU mode on the mac you want to reinstall the macOS (check the apple article below to find what is the recovery port on your specific model).
+4 - Set the DFU mode on the mac you want to reinstall the macOS (check the Apple's articles below to find what is the buttons combination to set your specific model on DFU mode).
 
 5 - In case everything works fine, on the working mac you will see a square written DFU in Apple Configurator 2 (there will be no feedback on mac where you want to reinstall macs).
 
@@ -132,11 +135,15 @@ How to create a bootable installer for macOS: https://support.apple.com/en-us/HT
 
 How To Set DFU Mode on M1 Apple Silicon MacBook - Reset Factory Settings: https://youtu.be/puL82I2B6Xk
 
-Revive or restore a Mac with Apple silicon with Apple Configurator 2: https://support.apple.com/en-us/guide/apple-configurator-2/apdd5f3c75ad/mac
+Wipe and Restore Locked T2 MacBooks Using DFU Mode: https://youtu.be/C_JLkLqbpv4
+
+Revive or restore a Apple silicon Mac  with Apple Configurator 2: https://support.apple.com/en-us/guide/apple-configurator-2/apdd5f3c75ad/mac
+
+Revive or restore an Intel-based T2 Mac using Apple Configurator 2: https://support.apple.com/pt-br/guide/apple-configurator-2/apdebea5be51/mac
 
 IPSW Download: https://ipsw.me/product/Mac
 
 
 ## Acknowledgements
 
-Thanks to Jaysukh Patel, Mr. Macintosh and Andrew Tsai for the tutorials found in the additional info sections.
+Thanks to Jaysukh Patel, Mr. Macintosh, RDKL Inc and Andrew Tsai for the tutorials found in the additional info sections.
