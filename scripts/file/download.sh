@@ -69,7 +69,7 @@ fi
 
 if [ $DELETEFILE == 1 ];then
     echo 'Deleting file ...'
-    rm -rf "$FILEDESTDMATION/$FILETOCOPY" > /dev/null 2>&1
+    rm -rf "$FOLDER/$FILENAME" > /dev/null 2>&1
 
     if [ $? == 0 ];then
         echo 'File deleted'
@@ -80,7 +80,7 @@ fi
 
 if [ $DELETEFOLDER == 1 ];then
     echo 'Deleting folder ...'
-    rm -rf "$FILEDESTDMATION" > /dev/null 2>&1
+    rm -rf "$FOLDER" > /dev/null 2>&1
 
     if [ $? == 0 ];then
         echo 'Folder deleted'
