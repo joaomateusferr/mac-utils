@@ -1,8 +1,10 @@
 #!/bin/bash
 
+#Developer notes
 #For extra performance you can use the Just In Time compiled version of Lua
 #You can find the lua just-in-time compiled version of Lua download link here: http://luajit.org/download.html
 #You can find the standard lua download link here: https://www.lua.org/download.html
+#https://doc.powerdns.com/recursor/lua-scripting/index.html
 
 #Run first "xcode-select --install" to intall command line tolls
 
